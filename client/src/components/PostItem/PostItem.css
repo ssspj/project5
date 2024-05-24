@@ -1,0 +1,135 @@
+.post-item {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  margin: 0 auto;
+  height: 130px;
+  margin-bottom: 30px;
+}
+
+.post-left {
+  flex: 0 0 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-image {
+  width: 80%;
+  height: 100%;
+  object-fit: fill;
+  border-radius: 8px;
+}
+
+.post-center {
+  flex: 0 0 55%;
+  display: flex;
+  flex-direction: column;
+  margin-top: -15px;
+  margin-left: 20px;
+}
+
+.post-top {
+  display: flex;
+  align-items: center;
+}
+
+.post-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.post-category {
+  margin-left: 20px;
+  font-size: 14px;
+  color: rgb(235, 245, 235);
+  border-radius: 20px;
+  background-color: darkseagreen;
+  padding: 8px;
+}
+
+.post-content {
+  font-size: 16px;
+}
+
+.post-bottom {
+  display: flex;
+  align-items: center;
+}
+
+.post-location {
+  font-size: 16px;
+}
+
+.area {
+  display: flex;
+  margin-left: 30px;
+  border: 1px solid #666;
+  border-radius: 20px;
+  padding: 5px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.marker-icon {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+}
+
+.post-area {
+  font-size: 14px;
+  margin: 0 auto;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  cursor: pointer; /* 커서 모양 변경 */
+  color: inherit; /* 기본 색상 상속 */
+}
+.post-area:hover {
+  color: darkcyan;
+}
+
+.people {
+  display: flex;
+  margin-left: 30px;
+}
+.people-img {
+  height: 100%;
+  width: 100%;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+.participant-num {
+  margin-right: 5px;
+}
+.max-num {
+  margin-left: 5px;
+}
+
+.post-right {
+  flex: 0 0 25%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.post-date {
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+  right: 0;
+  margin-bottom: 70px;
+  margin-right: 30px;
+}
+
+.valid-date {
+  margin-right: 30px;
+  color: darkred;
+}

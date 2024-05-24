@@ -1,0 +1,149 @@
+.mypage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  margin-bottom: 10px;
+  margin-left: 410px;
+  width: 75%;
+  height: 80vh;
+  position: relative;
+  margin-top: 145px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+.mypage-text {
+  font-size: 30px;
+  margin-left: 450px;
+  margin-top: 200px;
+}
+
+.mypage-container h4 {
+  font-size: 16px;
+  color: gray;
+  margin-top: -10px;
+  margin-bottom: 25px;
+  margin-left: 450px;
+}
+
+.mypage-container label {
+  font-size: 18px;
+  margin-left: 450px;
+}
+
+.email-box {
+  display: flex;
+  align-items: center;
+  width: 460px;
+  height: 50px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-left: 450px;
+  margin-top: 7px;
+}
+
+.email-label {
+  margin-bottom: 20px;
+}
+
+.user-email {
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.user-username {
+  font-size: 20px;
+  margin-left: 10px;
+  margin-top: 15px;
+}
+
+.username-box {
+  display: flex;
+  align-items: center;
+  width: 460px;
+  height: 50px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-left: 450px;
+  margin-top: 7px;
+}
+
+.username-content {
+  display: flex;
+}
+
+.location-box {
+  display: flex;
+  align-items: center;
+  width: 460px;
+  height: 50px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-left: 450px;
+  margin-top: 7px;
+}
+
+.location-label {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.location-content {
+  display: flex;
+}
+
+.user-location {
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.edit-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 460px;
+  height: 53px;
+  margin-left: -1px;
+  margin-top: -1px;
+  font-size: 16px;
+  font-family: "NPS";
+}
+
+.edit-input:focus {
+  outline: none;
+  border-color: darkseagreen;
+  box-shadow: 1px solid darkseagreen;
+  font-family: "NPS";
+}
+
+.id-edit-button,
+.id-change-button {
+  width: 70px;
+  height: 45px;
+  background-color: darkseagreen;
+  color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  margin-top: 10px;
+  margin-left: 15px;
+  padding: 0;
+  font-family: NPS;
+}
+
+.location-edit-button {
+  width: 120px; /* 주소 입력 버튼의 너비를 늘림 */
+  height: 45px;
+  background-color: darkseagreen;
+  color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  margin-top: 10px;
+  margin-left: 15px; /* 주소 입력 버튼을 왼쪽으로 이동 */
+  font-family: NPS;
+}

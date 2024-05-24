@@ -1,0 +1,139 @@
+.main-image img {
+  margin-top: 90px;
+  width: 100%;
+}
+
+.mainlist-container {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  height: 50%;
+  margin-top: 50px;
+}
+.mainPosts {
+  flex: 0.8;
+}
+.deliveryPosts {
+  margin-left: 50px;
+  flex: 1;
+  width: 80%;
+}
+
+.mainlist-container h2 {
+  margin-left: 80px;
+  white-space: nowrap;
+  font-size: 28px;
+}
+
+.mainTable {
+  margin: 20px;
+  margin-left: 60px;
+  border-radius: 20px;
+  height: 30%;
+  border-collapse: collapse;
+  width: 90%;
+}
+
+.mainTable th {
+  font-weight: bold;
+  font-size: 20px;
+  white-space: nowrap;
+  padding: 15px;
+  border-bottom: 2px solid grey;
+}
+.mainTable th:nth-child(1) {
+  width: 50%; /* 글 번호 구간 너비 */
+}
+
+.mainTable th:nth-child(2) {
+  width: 25%; /* 제목 구간 너비 */
+}
+
+.mainTable th:nth-child(3) {
+  width: 25%; /* 작성자 구간 너비 */
+}
+
+.mainTable td {
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  padding: 20px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.mainTable tbody :hover {
+  background-color: #f9f9f9;
+}
+
+.DeliveryList {
+  list-style: none;
+  padding: 0;
+  margin-top: 40px;
+}
+
+.delivery-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.DeliveryList li {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  display: flex;
+  width: 80%;
+}
+
+.DeliveryList li:hover {
+  background-color: #f9f9f9;
+}
+
+.category,
+.postName,
+.deliveryArea,
+.delivery-people,
+.validDate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.category {
+  margin-left: 20px;
+  font-size: 16px;
+  color: rgb(235, 245, 235);
+  border-radius: 20px;
+  background-color: darkseagreen;
+  padding: 10px;
+  margin-top: 8px;
+  height: 18px;
+}
+
+.postName {
+  font-size: 20px;
+  margin-left: 20px;
+  margin-top: 15px;
+}
+
+.deliveryArea {
+  display: flex;
+  margin-left: 20px;
+  border: 1px solid #666;
+  border-radius: 20px;
+  padding: 5px;
+  height: 25px;
+  cursor: pointer;
+  margin-top: 7px;
+  margin-right: 30px;
+}
+.deliveryArea :hover {
+  color: darkcyan;
+}
+
+.validDate {
+  margin-top: 15px;
+  margin-left: 30px;
+  color: darkred;
+}

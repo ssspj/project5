@@ -1,0 +1,131 @@
+.delivery-edit-content {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border: 1px solid grey;
+  width: 80%;
+  height: 80vh;
+  margin: 0 auto;
+  margin-top: 140px;
+  border-radius: 20px;
+}
+
+.categoryP-select {
+  margin-top: 30px;
+  margin-left: 50px;
+  margin-bottom: 30px;
+}
+
+.foiod -dropdown {
+  text-align: center;
+  width: 25%;
+}
+
+.date-select {
+  margin-left: 50px;
+  width: 70%;
+}
+
+.people-select {
+  margin-top: 20px;
+  margin-left: 50px;
+  margin-bottom: 20px;
+}
+
+.people-dropdown {
+  width: 15%;
+  text-align: center;
+}
+
+.location-text {
+  margin-left: 180px;
+  margin-top: 20px;
+  width: 40%;
+  height: 40px;
+  font-size: 18px;
+  text-align: center;
+  font-family: "NPS";
+  border: 2px solid darkseagreen;
+  border-radius: 20px;
+}
+
+.location-text :hover {
+  border: none;
+}
+.delivery-edit-content h2 {
+  font-size: 18px;
+  margin-left: 50px;
+}
+
+.left-content,
+.right-content {
+  width: calc(50% - 5px); /* 너비를 50%로 설정하여 좌우에 공간을 나눔 */
+}
+
+.middle-divider {
+  margin: 0 auto;
+  width: 2px; /* 구분선 너비 조정 */
+  background-color: gainsboro; /* 구분선 색상 설정 */
+  margin-top: 70px;
+  height: 80%;
+  margin-right: 30px;
+}
+
+.left-content {
+  flex-grow: 0.5;
+}
+.right-content {
+  flex-grow: 0.5; /* 우측 컨텐츠가 남은 공간을 채우도록 설정 */
+}
+.right-content h2 {
+  font-size: 24px;
+}
+
+.delivery-title {
+  margin-top: 50px;
+}
+
+.delivery-detail {
+  margin-top: 30px;
+}
+
+.delivery-title input {
+  margin-left: 50px;
+  width: 80%;
+  height: 40px;
+}
+
+.delivery-detail textarea {
+  margin-left: 50px;
+  width: 80%;
+  height: 350px;
+  resize: none;
+  overflow-y: scroll;
+}
+
+.delivery-input-text {
+  padding: 10px;
+  font-family: "NPS";
+  font-size: 18px;
+}
+
+.delivery-button {
+  background-color: darkseagreen;
+  color: white;
+  border: none;
+  padding: 20px 40px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+  font-family: "NPS";
+  position: fixed;
+  position: absolute;
+  bottom: 30px;
+  right: 50px;
+}
+
+.kakaomap {
+  margin-left: 50px;
+}

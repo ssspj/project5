@@ -1,0 +1,142 @@
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  height: 100vh; /* 화면 전체 높이 차지 */
+}
+.find_pw {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -150px;
+  height: 100vh; /* 화면 전체 높이 차지 */
+}
+.signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.login_main {
+  width: 394px;
+  height: 410px;
+  margin: auto; /* 수평 가운데 정렬 */
+  display: flex; /* 내부 요소를 수직으로 정렬하기 위해 추가 */
+  flex-direction: column; /* 내부 요소를 수직으로 정렬하기 위해 추가 */
+}
+
+.signup_main .login_form {
+  width: 394px;
+  height: 410px;
+  margin-top: -100px; /* 회원가입 폼을 위로 올림 */
+}
+
+.login_form {
+  width: 100%;
+}
+
+.login_main .inputTag {
+  position: relative;
+  width: 100%;
+}
+
+.login_main .inputTag input {
+  height: 40px;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: #f3f3f3;
+  padding: 30px 0px 10px 15px;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+input[type="password"] {
+  font: small-caption;
+  font-size: 16px;
+  font-family: "NPS";
+}
+
+.login_main .inputTag input:focus-within {
+  border: 1px solid darkseagreen;
+}
+
+.validation {
+  visibility: hidden;
+}
+
+.login_main .inputTag input + label {
+  display: block;
+  position: absolute;
+  text-align: left;
+  width: Fixed (41px);
+  height: Fixed (14px);
+  top: 10px;
+  left: 15px;
+  color: #666;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.24px;
+}
+
+.link_box {
+  width: 100%;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.location-find {
+  right: 0;
+  align-items: end;
+}
+
+.location-find-button {
+  background-color: darkseagreen;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-family: "NPS";
+  font-size: 12px;
+  padding: 10px;
+  right: 0;
+  margin-left: 300px;
+  width: 100px;
+  cursor: pointer;
+}
+
+#login_btn {
+  width: 100%;
+  border-radius: 10px;
+  background-color: darkseagreen;
+  border: none;
+  color: #f0f0f0;
+  height: 57px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: "NPS";
+  font-size: 16px;
+  margin-left: 5px;
+}
+
+.errorMSG {
+  color: red;
+}
+
+.alert {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.text {
+  color: grey;
+  font-size: 18px;
+  margin-top: -5px;
+  margin-bottom: 30px;
+}
