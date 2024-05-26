@@ -211,3 +211,58 @@ body {
   margin-right: 10px;
   vertical-align: middle; /* 이미지를 수직으로 가운데 정렬 */
 }
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(
+    -50%,
+    -50%
+  ); /* 세로와 가로의 절반만큼 이동하여 중앙에 정렬 */
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  width: 400px;
+  height: 150px;
+}
+
+.modal h2 {
+  font-size: 25px;
+  margin-top: 12px;
+}
+
+.modal p {
+  font-size: 16px;
+  margin-top: -8px;
+  margin-left: 2px;
+  margin-bottom: 45px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.confirm-button,
+.cancel-button {
+  padding: 13px 20px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: NPS;
+}
+
+.confirm-button {
+  background-color: darkseagreen;
+  color: #fff;
+}
+
+.cancel-button {
+  background-color: #ccc;
+  color: #333;
+}

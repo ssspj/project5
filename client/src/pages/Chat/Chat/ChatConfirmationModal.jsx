@@ -2,14 +2,19 @@
 
 import React from "react";
 
-const ConfirmationModal = ({ message, onCancel, onConfirm }) => {
+const ConfirmationModal = ({ onCancel, onConfirm }) => {
   return (
     <div className="modal">
       <div className="modal-content">
-        <p>{message}</p>
-        <div className="button-container">
-          <button onClick={onCancel}>취소</button>
-          <button onClick={onConfirm}>확인</button>
+        <h2>채팅방을 삭제하시겠습니까?</h2>
+        <p>삭제하실 경우, 모든 대화내용이 사라집니다.</p>
+        <div className="modal-actions">
+          <button onClick={onConfirm} className="confirm-button">
+            확인
+          </button>
+          <button onClick={onCancel} className="cancel-button">
+            취소
+          </button>
         </div>
       </div>
     </div>

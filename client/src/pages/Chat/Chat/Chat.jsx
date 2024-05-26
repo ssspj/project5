@@ -276,7 +276,6 @@ const ChatComponent = () => {
       <Toast message="해당 검색 결과가 없습니다." showToast={showToast} />
       {showConfirmationModal && (
         <ConfirmationModal
-          message="채팅방을 삭제하시겠습니까?"
           onCancel={() => setShowConfirmationModal(false)}
           onConfirm={confirmDeleteRoom}
         />
