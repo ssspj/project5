@@ -132,6 +132,10 @@
   color: darkcyan;
 }
 
+.deliveryPosts {
+  margin-left: 100px;
+}
+
 .validDate {
   margin-top: 15px;
   margin-left: 30px;

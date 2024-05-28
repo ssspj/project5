@@ -135,6 +135,9 @@
   cursor: pointer;
   margin-top: -10px;
 }
+.join-chat-button:hover {
+  background-color: darkcyan;
+}
 
 .join-button.disabled {
   background-color: gray; /* 비활성화된 배경색 */

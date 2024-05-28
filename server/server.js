@@ -112,8 +112,6 @@ io.on("connection", (socket) => {
   });
 });
 
-
-
 server.listen(port, () => {
   console.log(`서버 실행 ${port}`);
 });

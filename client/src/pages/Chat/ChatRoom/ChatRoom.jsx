@@ -5,6 +5,7 @@ import "./ChatRoom.css";
 import NavigationBar from "../../../components/NavigationBar/NavigationBar";
 import axios from "axios";
 import userImage from "../../../assets/user.png";
+import deliveryImg from "../../../assets/delivery2.png";
 
 const ChatRoom = () => {
   const { roomId } = useParams();
@@ -230,6 +231,13 @@ const ChatRoom = () => {
             <ul>
               {userChatRooms.map((room) => (
                 <li key={room.id} onClick={() => handleRoomClick(room.id)}>
+                  {!room.description && (
+                    <img
+                      src={deliveryImg}
+                      alt="Description available"
+                      className="delivery-image"
+                    />
+                  )}
                   {room.room_name}
                 </li>
               ))}
