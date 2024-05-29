@@ -67,3 +67,18 @@
   font-size: 24px;
   font-family: "NPS";
 }
+
+.board-category-dropdown {
+  width: 10%;
+}
+
+.board-category-select {
+  display: flex;
+  margin-left: 50px;
+  margin-bottom: 30px;
+}
+.board-category-select label {
+  font-size: 24px;
+  margin-top: 15px;
+  margin-right: 10px;
+}

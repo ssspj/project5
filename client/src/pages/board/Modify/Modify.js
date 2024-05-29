@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import NavigationBar from "../../../components/NavigationBar/NavigationBar";
 import "./Modify.css";
+import { boardOptions } from "../../../components/Options";
 
 const Modify = () => {
   const { id } = useParams();
@@ -11,6 +12,7 @@ const Modify = () => {
   const [inputs, setInputs] = useState({
     title: "",
     content: "",
+    category: "",
   });
 
   useEffect(() => {
@@ -24,6 +26,7 @@ const Modify = () => {
         setInputs({
           title: postData.title,
           content: postData.content,
+          category: postData.category,
         });
       } catch (error) {
         console.error("Error fetching post:", error);
@@ -92,6 +95,24 @@ const Modify = () => {
         <h2>게시글 수정</h2>
         {post ? (
           <form>
+            <div className="board-category-select">
+              <label className="board-category-text" htmlFor="category">
+                게시글 카테고리{" "}
+              </label>
+              <select
+                className="board-category-dropdown"
+                id="category"
+                name="category" // 추가된 부분
+                value={inputs.category} // 수정된 부분
+                onChange={onChange} // 수정된 부분
+              >
+                {boardOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
             <ul>
               <li>
                 <label htmlFor="title">제목</label>

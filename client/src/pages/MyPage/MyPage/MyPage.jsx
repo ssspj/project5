@@ -156,30 +156,20 @@ const MyPage = () => {
   };
 
   const handleComplete = async (data) => {
-    let fullAddress = data.address;
-    let extraAddress = "";
+    let selectedAddress = "";
 
-    if (data.addressType === "R") {
-      if (data.bname !== "") {
-        extraAddress += data.bname;
-      }
-      if (data.buildingName !== "") {
-        extraAddress +=
-          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
-      }
-      fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
+    // 지번 주소 사용
+    if (data.addressType === "R" && data.jibunAddress !== "") {
+      const addressArray = data.jibunAddress.split(" ");
+      selectedAddress = `${addressArray[0]} ${addressArray[1]} ${addressArray[2]}`; // 지번 주소에서 동까지만 표시
+    } else {
+      const addressArray = data.roadAddress.split(" ");
+      selectedAddress = `${addressArray[0]} ${addressArray[1]} ${addressArray[2]}`; // 도로명 주소에서 동까지만 표시
     }
-
-    // 지번 주소를 사용하여 시, 구, 동 형식으로 표시
-    const jibunAddress = data.jibunAddress;
-
-    // 지번 주소에서 시, 구, 동 추출
-    const addressArray = jibunAddress.split(" ");
-    const selectedAddress = `${addressArray[0]} ${addressArray[1]} ${addressArray[2]}`;
 
     setEnroll_company({
       ...enroll_company,
-      address: fullAddress,
+      address: selectedAddress,
     });
 
     setSelectedAddress(selectedAddress);

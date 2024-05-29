@@ -280,6 +280,7 @@ const View = () => {
         {post ? (
           <div className="view">
             <h2 style={{ position: "relative" }}>
+              <span className="board-view-category">[{post.category}]</span>
               {post.title}
               {currentUser &&
                 currentUser.username === post.author && ( // 작성자와 현재 로그인한 사용자가 동일한 경우에만 수정, 삭제 버튼 표시
@@ -290,11 +291,17 @@ const View = () => {
                     {showOptions && (
                       <div className="options-popup">
                         <div className="edit-delete-buttons">
-                          <button className="edit-button" onClick={onEdit}>
+                          <button
+                            className="edit-option-button"
+                            onClick={onEdit}
+                          >
                             수정
                           </button>
                           <hr className="options-divider" />
-                          <button className="delete-button" onClick={onDelete}>
+                          <button
+                            className="delete-option-button"
+                            onClick={onDelete}
+                          >
                             삭제
                           </button>
                         </div>

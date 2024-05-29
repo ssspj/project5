@@ -172,7 +172,7 @@ const MyPageLikes = () => {
                     ))}
                 </tbody>
               </table>
-              <div className="pagination-container">
+              <div className="mypage-pagination-container">
                 <div className="pagination">
                   <button
                     className="back"

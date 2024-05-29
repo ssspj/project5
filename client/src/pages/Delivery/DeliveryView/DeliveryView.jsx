@@ -8,6 +8,7 @@ import people from "../../../assets/people.png";
 import marker from "../../../assets/marker.png";
 import dayjs from "dayjs";
 import io from "socket.io-client";
+import Toast from "../../../components/Toast/Toast";
 
 export const DeliveryView = () => {
   const { post_id } = useParams();
@@ -21,6 +22,7 @@ export const DeliveryView = () => {
   const [mapCoordinates, setMapCoordinates] = useState({ lat: 0, lon: 0 });
   const [mapPopupContent, setMapPopupContent] = useState("");
   const navigate = useNavigate();
+  const [toastMessage, setToastMessage] = useState("");
 
   useEffect(() => {
     const fetchSession = async () => {
@@ -141,6 +143,10 @@ export const DeliveryView = () => {
       );
       console.log(response.data);
       navigate("/deliverylist");
+      setToastMessage("공동배달 게시글을 삭제하였습니다.");
+      setTimeout(() => {
+        setToastMessage("");
+      }, 3000);
     } catch (error) {
       console.error("게시글 삭제 실패:", error);
     }
@@ -159,6 +165,10 @@ export const DeliveryView = () => {
       setIsParticipant(true);
       setParticipantCount((prevCount) => prevCount + 1); // 참가 시 participant_num 증가
       console.log("참가");
+      setToastMessage("공동배달에 참가하였습니다.");
+      setTimeout(() => {
+        setToastMessage("");
+      }, 3000);
     } catch (error) {
       console.error("참가 요청 실패:", error);
     }
@@ -176,6 +186,10 @@ export const DeliveryView = () => {
       setIsParticipant(false);
       setParticipantCount((prevCount) => prevCount - 1); // 나가기 시 participant_num 감소
       console.log("나가기");
+      setToastMessage("공동배달을 나갔습니다.");
+      setTimeout(() => {
+        setToastMessage("");
+      }, 3000);
     } catch (error) {
       console.error("나가기 요청 실패:", error);
     }
@@ -222,6 +236,10 @@ export const DeliveryView = () => {
 
       // roomId를 사용하여 채팅 페이지로 이동
       navigate(`/chatroom/${roomId}`);
+      setToastMessage("채팅방에 입장하였습니다.");
+      setTimeout(() => {
+        setToastMessage("");
+      }, 3000);
     } catch (error) {
       console.error("Failed to join chat room:", error);
     }
@@ -332,6 +350,7 @@ export const DeliveryView = () => {
           onClose={() => setMapPopupOpen(false)}
         />
       )}
+      <Toast message={toastMessage} showToast={toastMessage !== ""} />
     </>
   );
 };

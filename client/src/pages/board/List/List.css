@@ -20,11 +20,11 @@
   padding: 0px 20px 20px 20px;
 }
 .table th:nth-child(1) {
-  width: 5%; /* 글 번호 구간 너비 */
+  width: 10%; /* 글 번호 구간 너비 */
 }
 
 .table th:nth-child(2) {
-  width: 55%; /* 제목 구간 너비 */
+  width: 50%; /* 제목 구간 너비 */
 }
 
 .table th:nth-child(3) {
@@ -70,10 +70,16 @@
   cursor: pointer;
 }
 
+.bottom-container {
+  display: flex;
+}
+
 .pagination-container {
   display: flex;
   justify-content: center;
   margin-top: 20px; /* 게시글과 pagination 사이의 간격 조정 */
+  margin-left: 20%;
+  height: 30px;
 }
 
 .pagination {
@@ -129,4 +135,13 @@
   margin-top: 5px;
   width: 30px;
   height: 30px;
+}
+
+.board_category {
+  color: darkcyan;
+  margin-right: 10px;
+}
+
+.board-category-dropdown1 {
+  width: 25%;
 }

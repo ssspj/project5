@@ -6,6 +6,7 @@ import "./List.css";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import Toast from "../../../components/Toast/Toast";
 import searchButton from "../../../assets/search-button.png";
+import { boardOptions } from "../../../components/Options";
 
 const List = () => {
   const [list, setList] = useState([]);
@@ -15,6 +16,7 @@ const List = () => {
   const [filteredPosts, setFilteredPosts] = useState([]); // 필터링된 게시글 목록 상태 변수 추가
   const [showToast, setShowToast] = useState(false); // 토스트 메시지 상태 변수 추가
   const navigate = useNavigate();
+  const [boardCategory, setBoardCategory] = useState("");
 
   useEffect(() => {
     // 서버에서 게시글 목록 가져오는 요청
@@ -60,11 +62,28 @@ const List = () => {
     }
   };
 
+  // 카테고리 클릭 이벤트 핸들러
+  const handleCategoryClick = (category) => {
+    setBoardCategory(category);
+    if (category) {
+      const filtered = list.filter((post) => post.category === category);
+      setFilteredPosts(filtered);
+    } else {
+      setFilteredPosts([]);
+    }
+    setCurrentPage(1); // 카테고리 클릭 시 첫 페이지로 이동
+  };
+
   // 현재 페이지의 필터링된 게시글 가져오기
   const currentPosts =
     filteredPosts.length > 0
       ? filteredPosts.slice(indexOfFirstPost, indexOfLastPost)
       : list.slice(indexOfFirstPost, indexOfLastPost);
+
+  // 총 페이지 수 계산
+  const totalPosts =
+    filteredPosts.length > 0 ? filteredPosts.length : list.length;
+  const totalPages = Math.ceil(totalPosts / postsPerPage);
 
   // 페이지 변경 이벤트 핸들러
   const paginate = (pageNumber) => {
@@ -76,6 +95,11 @@ const List = () => {
     navigate(`/view/${postId}`);
   };
 
+  const handleBoardCategoryChange = (e) => {
+    setBoardCategory(e.target.value);
+    handleCategoryClick(e.target.value);
+  };
+
   return (
     <>
       <div className="navbar">
@@ -83,6 +107,7 @@ const List = () => {
       </div>
       <div className="boardTitle">
         <p>자유게시판</p>
+
         <div className="search-container">
           <div className="searchInput">
             <input
@@ -121,6 +146,12 @@ const List = () => {
                 <td>{indexOfFirstPost + index + 1}</td>
                 <td>
                   <span
+                    className="board_category"
+                    onClick={() => handleCategoryClick(item.category)}
+                  >
+                    [{item.category}]
+                  </span>
+                  <span
                     className="title"
                     onClick={() => handleTitleClick(item.id)}
                   >
@@ -133,26 +164,51 @@ const List = () => {
             ))}
           </tbody>
         </table>
-        {/* 페이지네이션 버튼 */}
-        <div className="pagination-container">
-          <div className="pagination">
-            <button
-              className="back"
-              onClick={() => paginate(currentPage - 1)}
-              disabled={currentPage === 1}
+        <div className="bottom-container">
+          <div className="category-select">
+            <label className="category-text" htmlFor="category">
+              게시글 카테고리{" "}
+            </label>
+            <select
+              className="board-category-dropdown1"
+              id="category"
+              value={boardCategory}
+              onChange={handleBoardCategoryChange}
             >
-              <IoIosArrowBack />
-            </button>
-            <button
-              className="forward"
-              onClick={() => paginate(currentPage + 1)}
-              disabled={
-                indexOfLastPost >=
-                (filteredPosts.length > 0 ? filteredPosts : list).length
-              }
-            >
-              <IoIosArrowForward />
-            </button>
+              {boardOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+          {/* 페이지네이션 버튼 */}
+          <div className="pagination-container">
+            <div className="pagination">
+              <button
+                className="back"
+                onClick={() => paginate(currentPage - 1)}
+                disabled={currentPage === 1}
+              >
+                <IoIosArrowBack />
+              </button>
+              {Array.from({ length: totalPages }, (_, index) => (
+                <button
+                  key={index + 1}
+                  onClick={() => paginate(index + 1)}
+                  className={currentPage === index + 1 ? "active" : ""}
+                >
+                  {index + 1}
+                </button>
+              ))}
+              <button
+                className="forward"
+                onClick={() => paginate(currentPage + 1)}
+                disabled={currentPage === totalPages}
+              >
+                <IoIosArrowForward />
+              </button>
+            </div>
           </div>
         </div>
 

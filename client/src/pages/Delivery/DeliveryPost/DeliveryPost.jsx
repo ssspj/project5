@@ -12,6 +12,7 @@ import "./DeliveryPost.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
+import Toast from "../../../components/Toast/Toast";
 
 export default function BasicDateTimePicker() {
   const [category, setCategory] = useState("");
@@ -30,6 +31,7 @@ export default function BasicDateTimePicker() {
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
   const [roomCreated, setRoomCreated] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
 
   useEffect(() => {
     // 세션 정보를 가져와서 사용자 ID를 설정합니다.
@@ -196,11 +198,14 @@ export default function BasicDateTimePicker() {
         lon: longitude, // 추후에 지도에서 선택한 위치의 경도로 설정
       });
       console.log("게시물이 성공적으로 저장되었습니다.");
-      // 서버에 채팅방 생성 요청
-      handleCreateRoom();
 
-      alert("게시글을 등록하였습니다.");
+      await handleCreateRoom(); // 방을 생성
+
       navigate("/deliverylist");
+      setToastMessage("게시물을 등록하였습니다.");
+      setTimeout(() => {
+        setToastMessage("");
+      }, 3000);
     } catch (error) {
       console.error("게시물 저장 중 오류 발생:", error);
       console.log(
@@ -229,14 +234,33 @@ export default function BasicDateTimePicker() {
     }
   };
 
-  const handleCreateRoom = () => {
+  const handleCreateRoom = async () => {
     const socket = io("http://localhost:5000");
     socket.emit("createRoom", { title, username });
 
-    socket.on("roomCreated", ({ roomId }) => {
+    socket.on("roomCreated", async ({ roomId }) => {
       console.log("새로운 방이 생성되었습니다. 방 ID:", roomId);
       setRoomCreated(true);
+      await handleJoinChatRoom(roomId);
     });
+  };
+
+  const handleJoinChatRoom = async (roomId) => {
+    try {
+      console.log("방아이디는", roomId, "사용자아이디는", user_id);
+      // 채팅방 조인 요청
+      const joinResponse = await axios.post(
+        `http://localhost:5000/api/joinChatRoom`,
+        {
+          roomId: roomId,
+          userId: user_id,
+        }
+      );
+
+      console.log("참가한 채팅방 정보:", joinResponse.data);
+    } catch (error) {
+      console.error("Failed to join chat room:", error);
+    }
   };
 
   return (
@@ -349,6 +373,7 @@ export default function BasicDateTimePicker() {
             등록
           </button>
         </div>
+        <Toast message={toastMessage} showToast={toastMessage !== ""} />
       </div>
     </>
   );

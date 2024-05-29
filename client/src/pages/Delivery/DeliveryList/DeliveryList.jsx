@@ -11,6 +11,7 @@ import postImage from "../../../assets/post-image.png";
 import "./DeliveryList.css";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import Toast from "../../../components/Toast/Toast";
 
 function DeliveryList() {
   // 상태 변수들
@@ -27,8 +28,9 @@ function DeliveryList() {
   const [posts, setPosts] = useState([]);
   const [remainingTime, setRemainingTime] = useState({});
   const [showAllPosts, setShowAllPosts] = useState(false);
+  const [showMyPosts, setShowMyPosts] = useState(false);
   const navigate = useNavigate();
-  const label = { inputProps: { "aria-label": "Checkbox demo" } };
+  const [toastMessage, setToastMessage] = useState("");
 
   // 게시물의 작성 시간을 한글로 표시하는 함수
   const fromNowKorean = (date) => {
@@ -153,32 +155,40 @@ function DeliveryList() {
     setPopupOpen(false);
   };
 
+  // 주소 형식을 통일시키는 함수
+  const formatAddress = (address) => {
+    const splitAddress = address.split(" ");
+    const formattedAddress = splitAddress.slice(0, 3).join(" "); // "경기 양주시"와 "덕계동"만을 선택
+    return formattedAddress;
+  };
+
   // 팝업에서 주소 선택이 완료될 때 호출되는 함수
   const handleComplete = (data) => {
-    let fullAddress = data.address;
-    let extraAddress = "";
+    let selectedAddress = "";
 
-    if (data.addressType === "R") {
-      if (data.bname !== "") {
-        extraAddress += data.bname;
-      }
-      if (data.buildingName !== "") {
-        extraAddress +=
-          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
-      }
-      fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
+    // 지번 주소 사용
+    if (data.addressType === "R" && data.jibunAddress !== "") {
+      const addressArray = data.jibunAddress.split(" ");
+      selectedAddress = `${addressArray[0]} ${addressArray[1]} ${addressArray[2]}`; // 지번 주소에서 동까지만 표시
+    } else {
+      const addressArray = data.roadAddress.split(" ");
+      selectedAddress = `${addressArray[0]} ${addressArray[1]} ${addressArray[2]}`; // 도로명 주소에서 동까지만 표시
     }
 
     setEnrollCompany({
       ...enrollCompany,
-      address: fullAddress,
+      address: selectedAddress,
     });
 
-    const addressArray = fullAddress.split(" ");
-    const selectedAddress = `${addressArray[0]} ${addressArray[1]} ${addressArray[2]}`;
     setSelectedAddress(selectedAddress);
 
     handlePopupClose();
+    setToastMessage("지역을 재설정하였습니다");
+
+    // 3초 후에 토스트 메시지를 숨깁니다.
+    setTimeout(() => {
+      setToastMessage("");
+    }, 3000);
   };
 
   // 게시글 생성 핸들러
@@ -215,6 +225,10 @@ function DeliveryList() {
     setShowAllPosts(event.target.checked);
   };
 
+  const handleShowMyPostsChange = (event) => {
+    setShowMyPosts(event.target.checked);
+  };
+
   // 게시글 목록을 필터링 및 정렬하는 함수
   const filterAndSortPosts = (posts, category, sortOrder) => {
     let filteredPosts = posts;
@@ -231,6 +245,10 @@ function DeliveryList() {
       filteredPosts = filteredPosts.filter(
         (post) => post.take_location === selectedAddress
       );
+    }
+
+    if (showMyPosts) {
+      filteredPosts = filteredPosts.filter((post) => post.user_id === user_id);
     }
 
     // 정렬 순서에 따라 정렬
@@ -267,13 +285,6 @@ function DeliveryList() {
 
   // 정렬 및 필터링된 게시글 목록
   const sortedAndFilteredPosts = filterAndSortPosts(posts, category, sortOrder);
-  // 게시물 상태가 변경될 때마다 실행되는 useEffect
-
-  useEffect(() => {
-    if (sessionFetched && user_id) {
-      fetchUserLocation();
-    }
-  }, [sessionFetched, user_id, category]); // 카테고리가 변경될 때마다 호출
 
   return (
     <>
@@ -319,6 +330,28 @@ function DeliveryList() {
                 </option>
               ))}
             </select>
+          </div>
+          <div className="my-posts">
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={showMyPosts}
+                  onChange={handleShowMyPostsChange}
+                  color="success"
+                />
+              }
+              label={
+                <span
+                  style={{
+                    fontFamily: "NPS",
+                    fontSize: "16px",
+                    marginLeft: "-5px",
+                  }}
+                >
+                  내가 쓴 게시글 보기
+                </span>
+              } //
+            />
           </div>
           <div className="all-posts">
             <FormControlLabel
@@ -390,6 +423,7 @@ function DeliveryList() {
             onClose={() => setMapPopupOpen(false)}
           />
         )}
+        <Toast message={toastMessage} showToast={toastMessage !== ""} />
       </div>
     </>
   );

@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import Popup from "../../components/Popup/Popup";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
   // 회원가입 폼의 상태를 관리하기 위한 useState 훅을 사용합니다.
@@ -14,17 +15,24 @@ function Signup() {
   const [passwordMatch, setPasswordMatch] = useState(true); // 비밀번호 일치 여부 상태
   const [passwordError, setPasswordError] = useState("");
   const [unencryptedPassword, setUnencryptedPassword] = useState(""); // 암호화 되기 전의 비밀번호 상태
-  const [location, setLocation] = useState("");
   const [popupOpen, setPopupOpen] = useState(false);
-  const [enroll_company, setEnroll_company] = useState({
+  const [enrollCompany, setEnrollCompany] = useState({
     address: "",
   });
+  const [selectedAddress, setSelectedAddress] = useState("");
+  const navigate = useNavigate();
 
   // 회원가입 폼을 제출할 때 실행되는 함수입니다.
   const handleSubmit = async (e) => {
     e.preventDefault();
     // 입력값 유효성 검사
-    if (!email || !password || !confirmPassword || !username || !location) {
+    if (
+      !email ||
+      !password ||
+      !confirmPassword ||
+      !username ||
+      !selectedAddress
+    ) {
       // 빈 입력칸이 있는 경우 알람창을 띄움
       alert("모든 항목을 입력하세요.");
       return;
@@ -39,13 +47,14 @@ function Signup() {
         username,
         password,
         email,
-        location,
+        location: selectedAddress,
       });
       console.log("회원가입 정보는", response.data); // 서버로부터 받은 응답을 콘솔에 출력합니다.
       // 회원가입이 성공하면 다음 작업을 수행할 수 있습니다.
       setUnencryptedPassword(response.data.unencryptedPassword); // 암호화 되기 전의 비밀번호 설정
       //localStorage.setItem("username", username);
       alert("회원가입에 성공했습니다");
+      navigate("/");
     } catch (error) {
       // 회원가입에 실패하면 에러 메시지를 설정합니다.
       console.log("회원가입에 실패했습니다.", error);
@@ -110,30 +119,23 @@ function Signup() {
   };
 
   const handleComplete = (data) => {
-    let fullAddress = data.address;
-    let extraAddress = "";
+    let selectedAddress = "";
 
-    if (data.addressType === "R") {
-      if (data.bname !== "") {
-        extraAddress += data.bname;
-      }
-      if (data.buildingName !== "") {
-        extraAddress +=
-          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
-      }
-      fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
+    // 지번 주소 사용
+    if (data.addressType === "R" && data.jibunAddress !== "") {
+      const addressArray = data.jibunAddress.split(" ");
+      selectedAddress = `${addressArray[0]} ${addressArray[1]} ${addressArray[2]}`; // 지번 주소에서 동까지만 표시
+    } else {
+      const addressArray = data.roadAddress.split(" ");
+      selectedAddress = `${addressArray[0]} ${addressArray[1]} ${addressArray[2]}`; // 도로명 주소에서 동까지만 표시
     }
 
-    setEnroll_company({
-      ...enroll_company,
-      address: fullAddress,
+    setEnrollCompany({
+      ...enrollCompany,
+      address: selectedAddress,
     });
 
-    // 시, 구, 동 추출 및 설정
-    const addressArray = fullAddress.split(" ");
-    const selectedAddress = `${addressArray[0]} ${addressArray[1]} ${addressArray[2]}`;
-    setLocation(selectedAddress);
-    console.log(selectedAddress);
+    setSelectedAddress(selectedAddress);
 
     handlePopupClose(); // 팝업 닫기
   };
@@ -221,8 +223,8 @@ function Signup() {
               <input
                 className="input-text"
                 type="text"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
+                value={selectedAddress}
+                onChange={(e) => setSelectedAddress(e.target.value)}
               />
 
               <label htmlFor="input_location">

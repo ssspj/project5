@@ -3,6 +3,7 @@ import axios from "axios";
 import NavigationBar from "../../../components/NavigationBar/NavigationBar";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import "./MyPageChangePw.css";
+import Toast from "../../../components/Toast/Toast";
 
 const MyPageChangePw = () => {
   const [password, setPassword] = useState("");
@@ -10,6 +11,7 @@ const MyPageChangePw = () => {
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [message, setMessage] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [toastMessage, setToastMessage] = useState("");
 
   useEffect(() => {
     // 새 비밀번호 변경 시에만 유효성 검사를 수행합니다.
@@ -56,6 +58,10 @@ const MyPageChangePw = () => {
         setPassword("");
         setNewPassword("");
         setConfirmNewPassword("");
+        setToastMessage("비밀번호를 변경했습니다.");
+        setTimeout(() => {
+          setToastMessage("");
+        }, 3000);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -112,6 +118,7 @@ const MyPageChangePw = () => {
         <button onClick={handleChangePassword}>변경하기</button>
         {message && <p style={{ color: "green" }}>{message}</p>}
       </div>
+      <Toast message={toastMessage} showToast={toastMessage !== ""} />
     </div>
   );
 };

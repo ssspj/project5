@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Write.css"; // 수정된 파일명으로 변경
 import NavigationBar from "../../../components/NavigationBar/NavigationBar";
+import { boardOptions } from "../../../components/Options";
 
 const Write = ({ list, setList, idRef }) => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [username, setUsername] = useState("");
+  const [boardCategory, setBoardCategory] = useState("");
 
   useEffect(() => {
     // 서버에서 세션 정보를 가져와서 username을 설정합니다.
@@ -40,6 +42,7 @@ const Write = ({ list, setList, idRef }) => {
           title,
           author: username,
           content,
+          category: boardCategory,
         }), // 서버에서 시간을 처리하므로 author와 created_at을 전송하지 않음
       });
 
@@ -51,7 +54,10 @@ const Write = ({ list, setList, idRef }) => {
       console.log(data.message); // 서버로부터 받은 응답 메시지 출력
 
       // 저장에 성공했을 때 리스트를 업데이트
-      setList([...list, { title, author: username, content }]);
+      setList([
+        ...list,
+        { title, author: username, content, category: boardCategory },
+      ]);
 
       idRef.current = idRef.current + 1;
 
@@ -61,6 +67,10 @@ const Write = ({ list, setList, idRef }) => {
     }
   };
 
+  const handleBoardCategoryChange = (e) => {
+    setBoardCategory(e.target.value);
+  };
+
   return (
     <>
       <div className="navbar">
@@ -68,6 +78,23 @@ const Write = ({ list, setList, idRef }) => {
       </div>
       <div className="write-container">
         <h2>게시글 작성</h2>
+        <div className="board-category-select">
+          <label className="board-category-text" htmlFor="category">
+            게시글 카테고리{" "}
+          </label>
+          <select
+            className="board-category-dropdown"
+            id="category"
+            value={boardCategory}
+            onChange={handleBoardCategoryChange}
+          >
+            {boardOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
         <form onSubmit={onSubmit}>
           <ul>
             <li>

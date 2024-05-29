@@ -27,3 +27,10 @@ export const peopleOptions = [
   { label: "4", value: "4" },
   { label: "5", value: "5" },
 ];
+
+export const boardOptions = [
+  { label: "전체", value: "" },
+  { label: "질문", value: "질문" },
+  { label: "꿀팁", value: "꿀팁" },
+  { label: "잡담", value: "잡담" },
+];

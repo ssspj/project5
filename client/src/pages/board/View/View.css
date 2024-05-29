@@ -304,3 +304,8 @@
   height: 30px;
   resize: none;
 }
+
+.board-view-category {
+  color: darkcyan;
+  margin-right: 10px;
+}

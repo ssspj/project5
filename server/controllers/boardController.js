@@ -1,7 +1,7 @@
 const db = require("../database/db.js"); // db.js 파일의 경로에 맞게 수정
 
 exports.post = (req, res) => {
-  const { title, author, content } = req.body;
+  const { title, author, content, category } = req.body;
 
   if (!title || !author || !content) {
     return res.status(400).json({
@@ -17,26 +17,30 @@ exports.post = (req, res) => {
   const created_at = new Date(utc + koreaTimeDiff);
   // 데이터베이스에 텍스트 정보 저장
   const sql =
-    "INSERT INTO posts (title, author, content, created_at) VALUES (?, ?, ?, ?)";
-  db.query(sql, [title, author, content, created_at], (err, result) => {
-    if (err) {
-      console.error(
-        "게시글을 데이터베이스에 저장하는 중 오류가 발생했습니다.",
-        err
-      );
-      res.status(500).json({
-        success: false,
-        message: "게시글을 데이터베이스에 저장하는 중 오류가 발생했습니다.",
-      });
-      return;
-    }
+    "INSERT INTO posts (title, author, content, category, created_at) VALUES (?, ?, ?, ?, ?)";
+  db.query(
+    sql,
+    [title, author, content, category, created_at],
+    (err, result) => {
+      if (err) {
+        console.error(
+          "게시글을 데이터베이스에 저장하는 중 오류가 발생했습니다.",
+          err
+        );
+        res.status(500).json({
+          success: false,
+          message: "게시글을 데이터베이스에 저장하는 중 오류가 발생했습니다.",
+        });
+        return;
+      }
 
-    console.log("게시글을 데이터베이스에 성공적으로 저장했습니다.");
-    res.status(201).json({
-      success: true,
-      message: "게시글을 데이터베이스에 성공적으로 저장했습니다.",
-    });
-  });
+      console.log("게시글을 데이터베이스에 성공적으로 저장했습니다.");
+      res.status(201).json({
+        success: true,
+        message: "게시글을 데이터베이스에 성공적으로 저장했습니다.",
+      });
+    }
+  );
 };
 
 exports.getPostById = (req, res) => {
@@ -72,10 +76,11 @@ exports.getPostById = (req, res) => {
 
 exports.ModifyPost = (req, res) => {
   const { id } = req.params;
-  const { title, content } = req.body;
+  const { title, content, category } = req.body;
 
-  const sql = "UPDATE posts SET title = ?, content = ? WHERE id = ?";
-  db.query(sql, [title, content, id], (err, result) => {
+  const sql =
+    "UPDATE posts SET title = ?, content = ?, category = ? WHERE id = ?";
+  db.query(sql, [title, content, category, id], (err, result) => {
     if (err) {
       console.error("게시글을 업데이트하는 중 오류가 발생했습니다.", err);
       res.status(500).json({
@@ -118,7 +123,7 @@ exports.deletePostById = (req, res) => {
 exports.getPosts = (req, res) => {
   // 데이터베이스에서 모든 게시글을 가져오는 쿼리
   const sql =
-    "SELECT id, title, author, DATE_FORMAT(created_at, '%Y-%m-%d') AS date FROM posts ORDER BY created_at DESC";
+    "SELECT id, title, author, category, DATE_FORMAT(created_at, '%Y-%m-%d') AS date FROM posts ORDER BY created_at DESC";
 
   // 쿼리 실행
   db.query(sql, (err, result) => {

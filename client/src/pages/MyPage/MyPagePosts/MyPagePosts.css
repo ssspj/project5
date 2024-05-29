@@ -59,3 +59,10 @@
   height: 40px;
   border-bottom: 1px solid black;
 }
+
+.mypage-pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* 게시글과 pagination 사이의 간격 조정 */
+  height: 30px;
+}
