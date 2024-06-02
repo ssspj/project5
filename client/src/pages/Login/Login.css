@@ -1,48 +1,27 @@
-.login {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  vertical-align: middle;
-  height: 100vh; /* 화면 전체 높이 차지 */
-}
-.find_pw {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: -150px;
-  height: 100vh; /* 화면 전체 높이 차지 */
-}
+/* 공통 스타일 */
+.login,
+.find_pw,
 .signup {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  height: 100vh; /* 화면 전체 높이 차지 */
 }
 
-.login_main {
+.login_main,
+.signup_main {
   width: 394px;
-  height: 410px;
   margin: auto; /* 수평 가운데 정렬 */
   display: flex; /* 내부 요소를 수직으로 정렬하기 위해 추가 */
   flex-direction: column; /* 내부 요소를 수직으로 정렬하기 위해 추가 */
 }
 
-.signup_main .login_form {
-  width: 394px;
-  height: 410px;
-  margin-top: -100px; /* 회원가입 폼을 위로 올림 */
-}
-
-.login_form {
-  width: 100%;
-}
-
-.login_main .inputTag {
+.inputTag {
   position: relative;
   width: 100%;
 }
 
-.login_main .inputTag input {
+.inputTag input {
   height: 40px;
   width: 100%;
   margin-bottom: 10px;
@@ -57,19 +36,13 @@
 
 input[type="password"] {
   font: small-caption;
-  font-size: 16px;
-  font-family: "NPS";
 }
 
-.login_main .inputTag input:focus-within {
+.inputTag input:focus-within {
   border: 1px solid darkseagreen;
 }
 
-.validation {
-  visibility: hidden;
-}
-
-.login_main .inputTag input + label {
+.inputTag input + label {
   display: block;
   position: absolute;
   text-align: left;
@@ -101,12 +74,10 @@ input[type="password"] {
   border-radius: 10px;
   color: white;
   font-family: "NPS";
-  font-size: 12px;
-  padding: 10px;
-  right: 0;
-  margin-left: 300px;
-  width: 100px;
+  font-size: 14px;
+  padding: 10px 15px 10px 15px;
   cursor: pointer;
+  margin-left: 300px;
 }
 
 #login_btn {
@@ -125,6 +96,8 @@ input[type="password"] {
 
 .errorMSG {
   color: red;
+  font-size: small;
+  margin-top: 4px;
 }
 
 .alert {
@@ -139,4 +112,55 @@ input[type="password"] {
   font-size: 18px;
   margin-top: -5px;
   margin-bottom: 30px;
+}
+
+.idMSG {
+  margin-top: 5px;
+}
+
+/* 모바일 화면용 스타일 */
+@media only screen and (max-width: 904px) and (max-height: 2316px) {
+  body {
+    overflow: hidden;
+  }
+  .login_main,
+  .signup_main {
+    width: 90%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .inputTag input {
+    height: 30px;
+    font-size: 16px;
+  }
+  input[type="password"] {
+    font-family: "NPS";
+  }
+
+  #login_btn {
+    height: 45px;
+    font-size: 20px;
+  }
+
+  .location-find-button {
+    margin-left: 0;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .text {
+    font-size: 14px;
+    margin-top: -5px;
+    margin-bottom: 30px;
+  }
+
+  .login_form .inputTag input {
+    margin-bottom: 0px;
+  }
+
+  .location-find-button {
+    width: 30%;
+    margin-left: 230px;
+  }
 }

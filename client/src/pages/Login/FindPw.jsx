@@ -41,7 +41,7 @@ const FindPw = () => {
               className="input-text"
               type="text"
               value={username}
-              placeholder="아이디를 입력해주세요"
+              placeholder="id"
               onChange={(e) => setUsername(e.target.value)}
             />
             <label htmlFor="input_id">
@@ -56,7 +56,7 @@ const FindPw = () => {
               type="email"
               id="input.emai_"
               value={email}
-              placeholder="이메일을 입력해주세요"
+              placeholder="email"
               onChange={(e) => setEmail(e.target.value)}
             />
             <label htmlFor="input_email">

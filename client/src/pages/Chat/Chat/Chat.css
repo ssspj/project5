@@ -8,6 +8,7 @@ body {
   padding: 10px;
   box-sizing: border-box;
   max-height: 100vh;
+  margin-top: 105px;
 }
 
 .left-container {

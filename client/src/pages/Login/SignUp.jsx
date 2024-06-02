@@ -206,9 +206,13 @@ function Signup() {
             </label>
           </div>
 
-          <div>
+          <div className="idMSG">
             {username.trim() !== "" && (
-              <span style={{ color: usernameAvailable ? "green" : "red" }}>
+              <span
+                style={{
+                  color: usernameAvailable ? "green" : "red",
+                }}
+              >
                 {usernameAvailable
                   ? "사용가능한 아이디입니다"
                   : "중복된 아이디입니다"}

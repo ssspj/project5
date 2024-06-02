@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./NavigationBar.css";
+import mypageImage from "../../assets/mypage.png";
 
 const NavigationBar = () => {
   //const [isFirstRender, setIsFirstRender] = useState(true);
@@ -107,26 +108,28 @@ const NavigationBar = () => {
           자취 어때
         </div>
         <div className="spacer"></div>
-        <div
-          className="navbarmenu"
-          style={getMenuStyle("delivery")}
-          onClick={handleDeliveryClick}
-        >
-          공동 배달
-        </div>
-        <div
-          className="navbarmenu"
-          style={getMenuStyle("board")}
-          onClick={handleBoardClick}
-        >
-          게시판
-        </div>
-        <div
-          className="navbarmenu"
-          onClick={handleChatClick}
-          style={getMenuStyle("chat")}
-        >
-          채팅
+        <div className="navbarMenu">
+          <div
+            className="navbarmenu"
+            style={getMenuStyle("delivery")}
+            onClick={handleDeliveryClick}
+          >
+            공동 배달
+          </div>
+          <div
+            className="navbarmenu"
+            style={getMenuStyle("board")}
+            onClick={handleBoardClick}
+          >
+            게시판
+          </div>
+          <div
+            className="navbarmenu"
+            onClick={handleChatClick}
+            style={getMenuStyle("chat")}
+          >
+            채팅
+          </div>
         </div>
         <div className="spacer"></div>
         <div className="mypage" onClick={handleMyPageClick}>
@@ -138,10 +141,16 @@ const NavigationBar = () => {
             로그아웃
           </div>
         ) : (
-          <div>
+          <div className="toLogin">
             <Link to="/">로그인이 필요합니다</Link>
           </div>
         )}
+        <img
+          src={mypageImage}
+          className="mypageImage"
+          alt="mypage"
+          onClick={handleMyPageClick}
+        />
       </nav>
     </div>
   );
