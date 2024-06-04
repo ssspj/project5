@@ -297,85 +297,89 @@ function DeliveryList() {
           {selectedAddress ? `${selectedAddress}입니다.` : "입니다."}
         </h2>
         <div className="select-container">
-          <div className="category-select">
-            <label className="category-text" htmlFor="category">
-              음식 카테고리{" "}
-            </label>
-            <select
-              className="category-dropdown"
-              id="category"
-              value={category}
-              onChange={handleCategoryChange}
-            >
-              {foodOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
+          <div className="first-select">
+            <div className="category-select">
+              <label className="category-text" htmlFor="category">
+                음식 카테고리{" "}
+              </label>
+              <select
+                className="category-dropdown"
+                id="category"
+                value={category}
+                onChange={handleCategoryChange}
+              >
+                {foodOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="sort-select">
+              <label className="sort-text" htmlFor="sortOrder">
+                정렬 순서{" "}
+              </label>
+              <select
+                className="sort-dropdown"
+                id="sortOrder"
+                value={sortOrder}
+                onChange={handleSortOrderChange}
+              >
+                {sortOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-          <div className="sort-select">
-            <label className="sort-text" htmlFor="sortOrder">
-              정렬 순서{" "}
-            </label>
-            <select
-              className="sort-dropdown"
-              id="sortOrder"
-              value={sortOrder}
-              onChange={handleSortOrderChange}
-            >
-              {sortOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="my-posts">
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={showMyPosts}
-                  onChange={handleShowMyPostsChange}
-                  color="success"
-                />
-              }
-              label={
-                <span
-                  style={{
-                    fontFamily: "NPS",
-                    fontSize: "16px",
-                    marginLeft: "-5px",
-                  }}
-                >
-                  내가 쓴 게시글 보기
-                </span>
-              } //
-            />
-          </div>
-          <div className="all-posts">
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={showAllPosts}
-                  onChange={handleShowAllPostsChange}
-                  color="success"
-                />
-              }
-              label={
-                <span
-                  style={{
-                    fontFamily: "NPS",
-                    fontSize: "16px",
-                    marginLeft: "-5px",
-                  }}
-                >
-                  전체보기
-                </span>
-              } //
-            />
-          </div>
+          <div className="who-select">
+            <div className="my-posts">
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={showMyPosts}
+                    onChange={handleShowMyPostsChange}
+                    color="success"
+                  />
+                }
+                label={
+                  <span
+                    className="my-posts"
+                    style={{
+                      fontFamily: "NPS",
 
+                      marginLeft: "-5px",
+                    }}
+                  >
+                    내가 쓴 게시글 보기
+                  </span>
+                } //
+              />
+            </div>
+            <div className="all-posts">
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={showAllPosts}
+                    onChange={handleShowAllPostsChange}
+                    color="success"
+                  />
+                }
+                label={
+                  <span
+                    className="all-posts"
+                    style={{
+                      fontFamily: "NPS",
+                      marginLeft: "-5px",
+                    }}
+                  >
+                    전체보기
+                  </span>
+                } //
+              />
+            </div>
+          </div>
           <div className="buttons">
             <button
               className="select-location-button"

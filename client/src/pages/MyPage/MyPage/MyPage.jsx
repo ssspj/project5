@@ -206,7 +206,7 @@ const MyPage = () => {
       </div>
       <div className="mypage-container">
         <h1 className="mypage-text">내 정보</h1>
-        <h4>아이디를 수정하고 싶다면 수정버튼을 눌러주세요.</h4>
+        <h4>주소를 변경하고 싶다면 주소 변경 버튼을 눌러주세요.</h4>
         <div className="email-label">
           <label htmlFor="email">이메일</label>
           {user && (

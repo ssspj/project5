@@ -44,7 +44,7 @@ function Login() {
   return (
     <div className="login">
       <div className="login_main">
-        <h2>로그인</h2>
+        <h2 className="mainName">로그인</h2>
         <form className="login_form" onSubmit={handleSubmit}>
           <div className="inputTag">
             <input
@@ -74,7 +74,7 @@ function Login() {
               <span style={{ paddingLeft: "5px", color: "red" }}>*</span>
             </label>
           </div>
-          <p className="link_box" style={{ textAlign: "right" }}>
+          <p className="link_box_findpw" style={{ textAlign: "right" }}>
             <span
               style={{ cursor: "pointer" }}
               onClick={handlePasswordResetClick}

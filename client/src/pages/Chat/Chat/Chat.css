@@ -116,7 +116,7 @@ body {
   padding: 20px;
   background-color: #fafafa;
   width: calc(33.333% - 30px);
-  min-height: 200px; /* 최소 높이 설정 */
+  min-height: 250px; /* 최소 높이 설정 */
   height: 30%;
   box-sizing: border-box;
   display: flex;
@@ -144,11 +144,11 @@ body {
   align-items: center;
   height: 30px;
   margin-top: 80px;
-  margin-right: 50px;
+  margin-right: 150px;
 }
 
 .join-button-container {
-  width: 10%;
+  width: 100%;
   text-align: right;
   margin-top: 10px;
   margin-left: 220px;
@@ -162,7 +162,6 @@ body {
   font-size: 22px;
   font-family: "NPS";
   cursor: pointer;
-  margin-right: 50px;
 }
 .joinChatButton:hover {
   color: rgb(2, 92, 92);

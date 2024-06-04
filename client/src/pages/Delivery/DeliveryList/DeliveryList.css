@@ -7,7 +7,9 @@
   margin-top: 120px;
   border-radius: 20px;
 }
-
+.first-select {
+  display: flex;
+}
 .delivery-content h2 {
   padding: 10px;
   text-align: center;
@@ -31,12 +33,10 @@
 .category-select {
   margin-top: 10px;
   margin-left: 30px;
-  width: 22%;
 }
 
 .sort-select {
   margin-top: 10px;
-  width: 22%;
   margin-right: auto;
 }
 
@@ -91,4 +91,94 @@ select {
 
 .delivery-list::-webkit-scrollbar {
   display: none;
+}
+.myposts {
+  margin-left: 50px;
+}
+.who-select {
+  margin-left: 300px;
+  display: flex;
+}
+.my-posts {
+  font-size: 18px;
+}
+.all-posts {
+  font-size: 18px;
+}
+.buttons {
+  display: flex;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 400px) and (max-height: 2316px) {
+  .delivery-content {
+    margin-top: 150px;
+    width: 95%;
+    height: 75vh;
+  }
+
+  .delivery-content h2 {
+    font-size: 14px;
+  }
+
+  .select-container {
+    flex-direction: column; /* 작은 화면에서 요소들을 세로로 배치합니다. */
+    align-items: flex-start; /* 요소들을 왼쪽 정렬합니다. */
+  }
+  .first-select {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .category-text,
+  .sort-text {
+    font-size: 12px;
+    margin-right: 5px; /* 작은 화면에서 간격을 없앱니다. */
+  }
+
+  .category-select,
+  .sort-select {
+    width: 80%; /* 작은 화면에서 너비를 꽉 채우도록 설정합니다. */
+    flex-direction: row;
+    margin-left: 10px;
+  }
+
+  .category-dropdown,
+  .sort-dropdown {
+    width: 50%;
+    font-size: 12px;
+  }
+
+  .sort-select {
+    margin-left: 0px;
+  }
+
+  .who-select {
+    margin-left: 20px;
+  }
+  .all-posts {
+    font-size: 12px;
+  }
+  .my-posts {
+    font-size: 12px;
+  }
+  .buttons {
+    margin-left: 10px;
+  }
+  .select-location-button,
+  .delivery-post-button {
+    font-size: 12px;
+    padding: 10px;
+  }
+  .select-location-button {
+    margin-right: 10px;
+  }
+  .delivery-list {
+    height: 55%;
+    margin-top: 0px;
+    overflow: scroll;
+  }
+  .post-item {
+    height: 18%;
+  }
 }

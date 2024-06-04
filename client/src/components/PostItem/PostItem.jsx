@@ -56,7 +56,8 @@ function PostItem({
         <div className="post-top">
           <h3 className="post-title" onClick={onTitleClick}>
             {title}
-          </h3>
+          </h3>{" "}
+          <img src={imageSrc} alt="Post Image" className="post-image-mobile" />
           <p className="post-category">{category}</p>
         </div>
         <p className="post-content">{content}</p>

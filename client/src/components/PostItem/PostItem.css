@@ -133,3 +133,89 @@
   margin-right: 30px;
   color: darkred;
 }
+.post-image-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 400px) and (max-height: 2316px) {
+  .post-image-mobile {
+    display: inline;
+    height: 15px;
+    width: 15px;
+    margin-left: 3px;
+  }
+  .post-item {
+    margin-bottom: 15px;
+  }
+  .post-content {
+    display: none;
+  }
+  .post-title {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 50px);
+  }
+  .post-category {
+    font-size: 10px;
+    margin-left: 3px;
+    padding: 5px;
+    white-space: nowrap;
+  }
+  .post-date {
+    font-size: 10px;
+    margin-bottom: 0px;
+  }
+  .post-top {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  .post-bottom {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .post-location {
+    font-size: 12px;
+  }
+  .area {
+    margin-left: 10px;
+    height: 20px;
+  }
+  .post-area {
+    font-size: 10px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+  }
+  .marker-icon {
+  }
+  .people {
+    margin-left: 10px;
+    font-size: 10px;
+  }
+  .people-img {
+    width: 15px;
+    margin-top: 8px;
+  }
+  .post-right {
+    display: flex;
+    margin-top: -15px;
+    align-items: end;
+    width: 25%;
+    margin-left: 50px;
+    white-space: nowrap;
+    height: 10vh;
+  }
+  .post-left {
+    display: none;
+  }
+  .post-center {
+    margin-left: -10px;
+    width: 75%;
+  }
+  .valid-date {
+    font-size: 10px;
+    white-space: nowrap;
+    margin-bottom: 0px;
+  }
+}

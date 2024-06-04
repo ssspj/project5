@@ -143,7 +143,7 @@ function Signup() {
   return (
     <div className="signup">
       <div className="login_main">
-        <h2>회원가입</h2>
+        <h2 className="mainName">회원가입</h2>
         <form className="login_form" onSubmit={handleSubmit}>
           <div className="inputTag">
             <input

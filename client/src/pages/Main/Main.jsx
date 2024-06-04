@@ -143,6 +143,10 @@ const Main = () => {
     setRemainingTime(newRemainingTimes);
   };
 
+  useEffect(() => {
+    calculateRemainingTimes();
+  }, [latestDeliveryPosts]);
+
   return (
     <>
       <div className="main">
@@ -166,7 +170,7 @@ const Main = () => {
               {latestPosts.map((post) => (
                 <tr key={post.id} onClick={() => handleTitleClick(post.id)}>
                   <td>
-                    <span className="title">{post.title}</span>
+                    <span className="postTitle">{post.title}</span>
                   </td>
                   <td>{post.author}</td>
                   <td>{post.date}</td>
@@ -213,6 +217,7 @@ const Main = () => {
           </ul>
           <div className="latest-posts"></div>
         </div>
+
         {mapPopupOpen && (
           <MapPopup
             isOpen={mapPopupOpen}

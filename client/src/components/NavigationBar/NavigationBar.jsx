@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./NavigationBar.css";
 import mypageImage from "../../assets/mypage.png";
+import logoutImage from "../../assets/logout.png";
 
 const NavigationBar = () => {
   //const [isFirstRender, setIsFirstRender] = useState(true);
@@ -128,7 +129,7 @@ const NavigationBar = () => {
             onClick={handleChatClick}
             style={getMenuStyle("chat")}
           >
-            채팅
+            채팅방
           </div>
         </div>
         <div className="spacer"></div>
@@ -150,6 +151,12 @@ const NavigationBar = () => {
           className="mypageImage"
           alt="mypage"
           onClick={handleMyPageClick}
+        />
+        <img
+          src={logoutImage}
+          className="logoutImage"
+          alt="logout"
+          onClick={handleLogout}
         />
       </nav>
     </div>

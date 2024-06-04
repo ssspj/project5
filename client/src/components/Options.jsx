@@ -1,6 +1,6 @@
 // 음식 카테고리에 대한 데이터
 export const foodOptions = [
-  { label: "--- 전체 ---", value: "" },
+  { label: "전체", value: "" },
   { label: "한식", value: "한식" },
   { label: "중식", value: "중식" },
   { label: "일식", value: "일식" },
@@ -15,7 +15,7 @@ export const foodOptions = [
 
 // 정렬 순서에 대한 데이터
 export const sortOptions = [
-  { label: "--- 선택 ---", value: "" },
+  { label: "선택", value: "" },
   { label: "최신 작성글순", value: "최신순" },
   { label: "마감기한순", value: "기간순" },
 ];
