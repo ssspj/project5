@@ -1,4 +1,4 @@
-.chatroom {
+.chatcreateroom {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,12 +15,14 @@
   width: 40%;
 }
 
-.chatroom_main .inputTag {
+.chatroom_main .inputTag,
+.chatroom_main .inputTag2 {
   position: relative;
   width: 100%;
 }
 
-.chatroom_main .inputTag input {
+.chatroom_main .inputTag input,
+.chatroom_main .inputTag2 input {
   height: 40px;
   width: 100%;
   margin-bottom: 10px;
@@ -34,7 +36,8 @@
   font-family: "NPS";
 }
 
-.chatroom_main .inputTag input:focus-within {
+.chatroom_main .inputTag input:focus-within,
+.chatroom_main .inputTag2 input:focus-within {
   border: 1px solid darkseagreen;
 }
 
@@ -42,7 +45,8 @@
   visibility: hidden;
 }
 
-.chatroom_main .inputTag input + label {
+.chatroom_main .inputTag input + label,
+.chatroom_main .inputTag2 input + label {
   display: block;
   position: absolute;
   text-align: left;
@@ -62,8 +66,42 @@
   font-size: 18px;
   font-family: "NPS";
   padding: 20px 20px 20px 20px;
-  margin-left: 700px;
+  margin-left: 80%;
   background-color: darkseagreen;
   color: white;
+  white-space: nowrap;
   cursor: pointer;
+}
+@media screen and (max-width: 400px) and (max-height: 2316px) {
+  .chatcreateroom {
+    flex-direction: column;
+    height: 75vh;
+    margin-top: 140px;
+  }
+  .chatroom_main {
+    width: 70%;
+    margin: 0 auto;
+  }
+  .chatroom_main h1 {
+    font-size: 20px;
+  }
+  .chatroom_main h3 {
+    font-size: 14px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
+  .chatroom_main .inputTag input {
+    height: 20px;
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+  .chatroom_main .inputTag2 input {
+    height: 40px;
+    font-size: 12px;
+  }
+  .createRoomButton {
+    margin-left: 60%;
+    padding: 20px 15px;
+    font-size: 18px;
+  }
 }

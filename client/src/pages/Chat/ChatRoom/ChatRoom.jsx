@@ -6,6 +6,9 @@ import NavigationBar from "../../../components/NavigationBar/NavigationBar";
 import axios from "axios";
 import userImage from "../../../assets/user.png";
 import deliveryImg from "../../../assets/delivery2.png";
+import chatListImg from "../../../assets/my-chat.png";
+import hamburgerbar from "../../../assets/hamburgerbar.png";
+import sendImg from "../../../assets/transfer.png";
 
 const ChatRoom = () => {
   const { roomId } = useParams();
@@ -18,6 +21,8 @@ const ChatRoom = () => {
   const navigate = useNavigate();
   const [currentRoomName, setCurrentRoomName] = useState("");
   const [roomUsers, setRoomUsers] = useState([]);
+  const [sidebarActive, setSidebarActive] = useState(false);
+  const [userSidebarActive, setUserSidebarActive] = useState(false);
 
   useEffect(() => {
     // 채팅방에 들어갈 때마다 해당 채팅방의 ID를 얻어와서 소켓 연결 설정
@@ -213,6 +218,20 @@ const ChatRoom = () => {
   const handleRoomClick = (roomId) => {
     navigate(`/chatRoom/${roomId}`);
   };
+  const toggleSidebar = () => {
+    setSidebarActive(!sidebarActive);
+  };
+
+  const closeSidebar = () => {
+    setSidebarActive(false);
+  };
+  const toggleUserSidebar = () => {
+    setUserSidebarActive(!userSidebarActive);
+  };
+
+  const closeUserSidebar = () => {
+    setUserSidebarActive(false);
+  };
 
   return (
     <>
@@ -220,6 +239,85 @@ const ChatRoom = () => {
         <NavigationBar />
       </div>
       <div className="chat-room">
+        <div className="mobile-chatroom">
+          {" "}
+          <div className="chatroom-information">
+            <img
+              src={chatListImg}
+              alt="toggleImg"
+              className="ChatListButton"
+              onClick={toggleSidebar}
+            />
+            <div className="chatroom-name">{currentRoomName}</div>
+            <img
+              src={hamburgerbar}
+              alt="hamburgerbar"
+              className="hamburgerButton"
+              onClick={toggleUserSidebar}
+            />
+          </div>
+          <div
+            className={`chatOverlay ${sidebarActive ? "chatactive" : ""}`}
+            onClick={closeSidebar}
+          ></div>
+          <div className={`chatSidebar ${sidebarActive ? "chatactive" : ""}`}>
+            <div className="myChatList">
+              <h2>내 채팅방 목록</h2>
+              <ul className="myChatListContent">
+                {userChatRooms.map((room) => (
+                  <li key={room.id} onClick={() => handleRoomClick(room.id)}>
+                    {!room.description && (
+                      <img
+                        src={deliveryImg}
+                        alt="Description available"
+                        className="delivery-image"
+                        oncl
+                      />
+                    )}
+                    {room.room_name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div
+            className={`chatUserOverlay ${
+              userSidebarActive ? "chatactive" : ""
+            }`}
+            onClick={closeUserSidebar}
+          ></div>
+          <div
+            className={`chatUserSidebar ${
+              userSidebarActive ? "chatactive" : ""
+            }`}
+          >
+            <div className="mobile-right-chatroom-users">
+              <h2>참가한 사용자</h2>
+              {roomUsers && roomUsers.length > 0 ? (
+                <ul className="mobile-chatroom-users">
+                  {roomUsers.map((user) => (
+                    <li key={user.user_id}>
+                      <img
+                        src={userImage}
+                        alt="userImage"
+                        className="userImage"
+                      />{" "}
+                      {user.user_id}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p>참여한 채팅방이 없습니다.</p>
+              )}
+              <button
+                className="mobile-leave-chat-button"
+                onClick={handleLeaveChatRoom}
+              >
+                채팅방 나가기
+              </button>
+            </div>
+          </div>
+        </div>
         <div className="left-chatroom">
           <div className="chatList">{currentRoomName}</div>
           <button className="leave-chat-button" onClick={handleLeaveChatRoom}>
@@ -298,7 +396,15 @@ const ChatRoom = () => {
               onChange={(e) => setMessageInput(e.target.value)}
               onKeyPress={handleKeyPress}
             />
-            <button onClick={handleMessageSend}>전송</button>
+            <button className="sendButton" onClick={handleMessageSend}>
+              전송
+            </button>
+            <img
+              src={sendImg}
+              alt="sendImgButton"
+              className="sendImgButton"
+              onClick={handleMessageSend}
+            />
           </div>
         </div>
         <div className="right-chatroom-users">

@@ -63,7 +63,7 @@ const RoomComponent = () => {
         <NavigationBar />
       </div>
       <div>
-        <div className="chatroom">
+        <div className="chatcreateroom">
           <div className="chatroom_main">
             <h1>채팅방 생성</h1>
             <h3 style={{ color: "gray" }}>
@@ -88,7 +88,7 @@ const RoomComponent = () => {
 
                 <div style={{ marginTop: "26px" }} />
 
-                <div className="inputTag">
+                <div className="inputTag2">
                   <input
                     className="input-text"
                     type="text"
