@@ -97,14 +97,7 @@ const MyPageChangePw = () => {
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
           />
-          {passwordError && (
-            <p
-              className="errormessage"
-              style={{ color: "red", marginTop: "0" }}
-            >
-              {passwordError}
-            </p>
-          )}
+          {passwordError && <p className="errormessage">{passwordError}</p>}
         </div>
         <div>
           <label htmlFor="confirmNewPassword">새 비밀번호 확인 </label>
@@ -116,7 +109,7 @@ const MyPageChangePw = () => {
           />
         </div>
         <button onClick={handleChangePassword}>변경하기</button>
-        {message && <p style={{ color: "green" }}>{message}</p>}
+        {message && <p className="message">{message}</p>}
       </div>
       <Toast message={toastMessage} showToast={toastMessage !== ""} />
     </div>

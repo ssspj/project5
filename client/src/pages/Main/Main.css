@@ -137,7 +137,6 @@ body {
 }
 
 .postName {
-  font-size: 20px;
   margin-left: 20px;
   margin-top: 15px;
 }
@@ -162,6 +161,27 @@ body {
   margin-left: 30px;
   color: darkred;
 }
+.second-row {
+  display: flex;
+}
+.main-people-icon {
+  width: 24px;
+  height: 24px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+.main-post-area {
+  font-size: 14px;
+  margin: 0 auto;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  cursor: pointer; /* 커서 모양 변경 */
+  color: inherit; /* 기본 색상 상속 */
+}
+.main-category-image {
+  display: none;
+}
 
 @media (min-width: 401px) {
   body {
@@ -173,9 +193,13 @@ body {
     content: url("../../assets/main-image.jpg");
   }
 }
-@media screen and (max-width: 400px) and (max-height: 2316px) {
+@media screen and (max-width: 450px) and (max-height: 2316px) {
+  body {
+    height: 100%;
+    overflow: hidden; /* 전체 스크롤 비활성화 */
+  }
   .main-image {
-    content: url("../../assets/main-image5.png");
+    content: url("../../assets/main-image6.png");
   }
   .main-image {
     margin-top: 130px; /* 네비게이션 바 바로 아래에 위치하도록 조정 */
@@ -191,12 +215,12 @@ body {
   .mainlist-container {
     width: 100%; /* 전체 화면의 두 배 너비로 설정 */
     flex-direction: column;
-    height: auto;
+    height: calc(100vh - 300px); /* 화면 높이에서 네비게이션 바 높이를 뺀 값 */
     margin-top: 0px;
-    overflow-y: scroll;
-    display: flex;
-    flex: 1;
-    height: 50%;
+    overflow-y: auto; /* 스크롤 가능하도록 변경 */
+  }
+  .mainlist-container::-webkit-scrollbar {
+    display: none; /* 스크롤바 숨기기 */
   }
   .mainlist-container h2 {
     font-size: 18px;
@@ -208,7 +232,7 @@ body {
     margin: 0 auto;
     border-radius: 20px;
     border-collapse: collapse;
-    width: 80%;
+    width: 90%;
   }
 
   .mainTable th {
@@ -242,6 +266,84 @@ body {
   .deliveryPosts {
     margin-left: 0px;
     border-top: 1px solid gainsboro;
-    margin-top: 100px;
+    margin-top: 30px;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .deliveryPosts h2 {
+    margin-left: 20px;
+    margin-bottom: 0px;
+  }
+  .DeliveryList {
+    margin-top: 10px;
+    max-height: calc(100vh - 200px); /* 최대 높이 설정 */
+  }
+  .DeliveryList li {
+    width: 90%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+  .category {
+    font-size: 10px;
+    padding: 5px;
+    margin: 0px;
+    width: 10%;
+    display: none;
+  }
+  .validDate {
+    display: none;
+  }
+  .postName {
+    font-size: 12px;
+    margin: 0px;
+    flex: 0 0 45%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .deliveryArea {
+    margin: 0px;
+    height: 20px;
+    width: 100px;
+    padding: 3px;
+    flex: 0 0 30%;
+  }
+  .main-post-area {
+    font-size: 9px;
+    margin: 0px;
+    margin-top: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .main-marker-icon {
+    width: 15%;
+    height: 50%;
+    margin-top: 5px;
+  }
+  .second-row {
+    display: block;
+    flex-direction: row;
+  }
+  .main-people-icon {
+    width: 15px;
+    height: 15px;
+    margin: 0px;
+    margin-left: 8px;
+    margin-right: 5px;
+  }
+  .main-category-image {
+    display: block;
+    width: 80%;
+    height: 50%;
+  }
+  .main-category {
+    flex: 0 0 10%;
+  }
+  .delivery-people {
+    font-size: 10px;
+    flex: 0 0 20%;
   }
 }

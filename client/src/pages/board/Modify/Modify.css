@@ -67,3 +67,42 @@
   font-size: 24px;
   font-family: "NPS";
 }
+@media screen and (max-width: 400px) and (max-height: 2316px) {
+  .modify-container {
+    flex-direction: column;
+    height: 75vh;
+    width: 95%;
+    overflow-y: auto;
+    margin-top: 145px;
+  }
+  .modify-container h2 {
+    margin: 20px;
+    font-size: 24px;
+  }
+
+  .modify-container ul li {
+    margin-left: -10px;
+    margin-bottom: 20px;
+  }
+  .modify-container ul li label {
+    font-size: 16px;
+  }
+  .modify-container input[type="text"] {
+    height: 50%;
+    font-size: 14px;
+    width: 80%;
+  }
+  .modify-container textarea {
+    font-size: 14px;
+    width: 80%;
+    height: 160px;
+    word-spacing: 2px;
+    letter-spacing: 1px;
+  }
+  .modifyButton {
+    padding: 10px 20px;
+    border-radius: 10px;
+    bottom: 10px;
+    right: 50px;
+  }
+}

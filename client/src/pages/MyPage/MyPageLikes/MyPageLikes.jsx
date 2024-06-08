@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import NavigationBar from "../../../components/NavigationBar/NavigationBar";
 import Sidebar from "../../../components/Sidebar/Sidebar";
+import PostItemboard from "../../../components/PostItemboard/PostItemboard";
 import "./MyPageLikes.css";
 import Toast from "../../../components/Toast/Toast";
 import filledHeartIcon from "../../../assets/filled-heart.png";
@@ -127,13 +128,34 @@ const MyPageLikes = () => {
       <div className="sidebar">
         <Sidebar />
       </div>
-      <div className="mypage-container">
+      <div className="mypagelikes-container">
         <div className="content">
           <h2 className="text-like">내가 좋아요한 게시물</h2>
           {loading ? (
             <p>Loading...</p>
           ) : (
             <>
+              <div className="like-list">
+                {likedPosts
+                  .slice(
+                    (currentPage - 1) * postsPerPage,
+                    currentPage * postsPerPage
+                  )
+                  .map((post) => (
+                    <PostItemboard
+                      key={post.id}
+                      title={post.title}
+                      created_at={post.created_at}
+                      author={post.author}
+                      onClick={() => handleTitleClick(post.id)}
+                      showAuthor={true}
+                      showContent={false}
+                      showLikeButton={true}
+                      liked={isPostLiked(post.id)} // liked 상태 전달
+                      toggleLike={() => handleLike(post.id)} // toggleLike 함수 전달
+                    />
+                  ))}
+              </div>
               <table className="mypage-likes-table">
                 <thead>
                   <tr>

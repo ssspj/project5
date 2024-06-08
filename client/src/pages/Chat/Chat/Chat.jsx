@@ -7,6 +7,9 @@ import searchButton from "../../../assets/search-button.png";
 import Toast from "../../../components/Toast/Toast";
 import ConfirmationModal from "./ChatConfirmationModal";
 import deliveryImg from "../../../assets/delivery2.png";
+import deleteImg from "../../../assets/trash.png";
+import toggleImg from "../../../assets/menu.png";
+import createChatImg from "../../../assets/xbutton.png";
 
 const ChatComponent = () => {
   const [chatRooms, setChatRooms] = useState([]);
@@ -243,23 +246,21 @@ const ChatComponent = () => {
                 <h3>{room.room_name}</h3>
                 {username === room.username && ( // 방 생성자와 로그인한 사용자가 같을 때만 삭제 버튼을 표시합니다.
                   <div className="delete-button-container">
-                    <button
+                    <img
+                      src={deleteImg}
+                      alt="Description available"
                       className="delete-chat-button"
                       onClick={() => handleDeleteRoom(room.id)}
-                    >
-                      삭제
-                    </button>
+                    />
                   </div>
                 )}
               </div>
               <p className="description">{room.description}</p>
+              <p className="createdby">{room.username}</p>
               <div className="chat-low">
-                <div className="chatroom-information">
-                  <p className="createdby">{room.username}</p>
-                  <p className="createdat">
-                    개설일 {formatDate(room.created_at)}
-                  </p>
-                </div>
+                <p className="createdat">
+                  개설일 {formatDate(room.created_at)}
+                </p>
 
                 <div className="join-button-container">
                   <button
@@ -273,6 +274,7 @@ const ChatComponent = () => {
             </div>
           ))}
       </div>
+
       <Toast message="해당 검색 결과가 없습니다." showToast={showToast} />
       {showConfirmationModal && (
         <ConfirmationModal

@@ -247,8 +247,10 @@ function DeliveryList() {
       );
     }
 
+    // 내가 쓴 글 보기가 체크된 경우, 사용자가 작성한 게시글만 필터링
     if (showMyPosts) {
-      filteredPosts = filteredPosts.filter((post) => post.user_id === user_id);
+      // 내가 쓴 게시글은 위치와 상관없이 모두 보여줌
+      filteredPosts = posts.filter((post) => post.user_id === user_id);
     }
 
     // 정렬 순서에 따라 정렬

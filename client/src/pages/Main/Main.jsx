@@ -8,6 +8,31 @@ import marker from "../../assets/marker.png";
 import people from "../../assets/people.png";
 import dayjs from "dayjs";
 import MapPopup from "../../components/MapPopup/MapPopup";
+import postImage from "../../assets/post-image.png";
+import korean from "../../assets/category/Korean.png";
+import chinese from "../../assets/category/Chinese.jpg";
+import japanese from "../../assets/category/Japanese.png";
+import western from "../../assets/category/Western.png";
+import snackbar from "../../assets/category/SnackBar.png";
+import pizza from "../../assets/category/Pizza.png";
+import chicken from "../../assets/category/Chicken.png";
+import fastfood from "../../assets/category/FastFood.png";
+import desert from "../../assets/category/Desert.png";
+import etc from "../../assets/category/Etc.png";
+
+// 카테고리별 이미지를 매핑한 객체
+const categoryImages = {
+  한식: korean,
+  중식: chinese,
+  일식: japanese,
+  양식: western,
+  분식: snackbar,
+  피자: pizza,
+  치킨: chicken,
+  패스트푸드: fastfood,
+  디저트: desert,
+  기타: etc,
+};
 
 const Main = () => {
   const [latestPosts, setLatestPosts] = useState([]);
@@ -187,16 +212,23 @@ const Main = () => {
                 key={deliverypost.post_id}
                 onClick={() => handleDeliveryTitleClick(deliverypost.post_id)}
               >
+                <span className="main-category">
+                  <img
+                    className="main-category-image"
+                    src={categoryImages[deliverypost.category] || postImage}
+                    alt="Category"
+                  />
+                </span>
                 <span className="category">{deliverypost.category}</span>
                 <span className="postName">{deliverypost.post_name}</span>
                 <div className="deliveryArea">
                   <img
                     src={marker}
                     alt="Location Marker"
-                    className="marker-icon"
+                    className="main-marker-icon"
                   />
                   <p
-                    className="post-area"
+                    className="main-post-area"
                     onClick={(e) => {
                       e.stopPropagation(); // 부모 클릭 이벤트 전파 방지
                       handlePostAreaClick(deliverypost.post_id);
@@ -205,7 +237,12 @@ const Main = () => {
                     {deliverypost.post_area}
                   </p>
                 </div>
-                <img src={people} alt="peopleimage" className="people-icon" />
+
+                <img
+                  src={people}
+                  alt="peopleimage"
+                  className="main-people-icon"
+                />
                 <p className="delivery-people">
                   {deliverypost.participant_num} / {deliverypost.max_person_num}
                 </p>

@@ -1,4 +1,4 @@
-.mypage-container {
+.mypagelikes-container {
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -77,4 +77,52 @@
   justify-content: center;
   margin-top: 20px; /* 게시글과 pagination 사이의 간격 조정 */
   height: 30px;
+}
+
+@media screen and (max-width: 904px) and (max-height: 2316px) {
+  .mypage-likes-table {
+    display: none;
+  }
+
+  .like-list {
+    display: block;
+    height: 75vh;
+  }
+
+  .mypagelikes-container {
+    margin-left: 2.5%;
+    width: 95%;
+    height: 75vh;
+    margin-top: 150px;
+    overflow-y: auto;
+  }
+
+  .mypagelikes-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .text-like {
+    font-size: 20px;
+    padding: 10px;
+    margin-left: 5px;
+    margin-bottom: -10px;
+  }
+
+  .like-icon {
+    width: 25px;
+    height: 25px;
+    margin-left: 260px;
+    margin-top: -50px;
+    margin-bottom: 25px;
+  }
+
+  .mypage-pagination-container {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 905px), screen and (min-height: 2317px) {
+  .like-list {
+    display: none;
+  }
 }

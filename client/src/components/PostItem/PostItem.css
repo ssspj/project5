@@ -42,6 +42,10 @@
 .post-title {
   font-size: 20px;
   font-weight: bold;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .post-category {
@@ -55,6 +59,12 @@
 
 .post-content {
   font-size: 16px;
+  height: 20px;
+  width: 100%;
+  margin-top: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .post-bottom {
@@ -151,7 +161,7 @@
     display: none;
   }
   .post-title {
-    font-size: 12px;
+    font-size: 14px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -168,7 +178,7 @@
     margin-bottom: 0px;
   }
   .post-top {
-    margin-top: 0px;
+    margin-top: -5px;
     margin-bottom: 0px;
   }
   .post-bottom {
@@ -196,13 +206,20 @@
   .people-img {
     width: 15px;
     margin-top: 8px;
+    margin-right: 3px;
+  }
+  .participant-num {
+    margin-right: 3px;
+  }
+  .max-num {
+    margin-left: 3px;
   }
   .post-right {
     display: flex;
     margin-top: -15px;
     align-items: end;
     width: 25%;
-    margin-left: 50px;
+    margin-left: 53px;
     white-space: nowrap;
     height: 10vh;
   }
@@ -214,7 +231,7 @@
     width: 75%;
   }
   .valid-date {
-    font-size: 10px;
+    font-size: 8px;
     white-space: nowrap;
     margin-bottom: 0px;
   }

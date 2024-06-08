@@ -274,18 +274,22 @@ export const DeliveryView = () => {
             </div>
             <hr className="delivery-comment-divider" />
             <div className="low-content">
-              <img src={people} alt="peopleimage" className="people-icon" />
+              <div className="people-location">
+                <div className="people-info">
+                  <img src={people} alt="peopleimage" className="people-icon" />
 
-              <p className="delivery-people">
-                {participantCount} / {deliveryInfo.max_person_num}
-              </p>
-              <div className="location" onClick={handlePostAreaClick}>
-                <img
-                  src={marker}
-                  alt="Location Marker"
-                  className="marker-icon"
-                />
-                <p className="delivery-area">{deliveryInfo.post_area}</p>
+                  <p className="view-delivery-people">
+                    {participantCount} / {deliveryInfo.max_person_num}
+                  </p>
+                </div>
+                <div className="location" onClick={handlePostAreaClick}>
+                  <img
+                    src={marker}
+                    alt="Location Marker"
+                    className="marker-icon"
+                  />
+                  <p className="delivery-area">{deliveryInfo.post_area}</p>
+                </div>
               </div>
 
               <div className="delivery-post-edit">

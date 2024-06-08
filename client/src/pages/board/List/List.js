@@ -11,12 +11,28 @@ import { boardOptions } from "../../../components/Options";
 const List = () => {
   const [list, setList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10); // 페이지당 표시할 게시글 수
+  const [postsPerPage, setPostsPerPage] = useState(
+    window.innerWidth <= 400 ? 5 : 10
+  );
   const [searchKeyword, setSearchKeyword] = useState(""); // 검색어 상태 변수 추가
   const [filteredPosts, setFilteredPosts] = useState([]); // 필터링된 게시글 목록 상태 변수 추가
   const [showToast, setShowToast] = useState(false); // 토스트 메시지 상태 변수 추가
   const navigate = useNavigate();
   const [boardCategory, setBoardCategory] = useState("");
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 400);
+  const [maxPageButtons, setMaxPageButtons] = useState(10);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth <= 400;
+      setIsMobile(mobile);
+      setPostsPerPage(mobile ? 5 : 10); // 모바일에서는 5, PC에서는 10
+      setMaxPageButtons(mobile ? 5 : 10);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     // 서버에서 게시글 목록 가져오는 요청
@@ -130,6 +146,35 @@ const List = () => {
           ></img>
         </div>
       </div>
+
+      {isMobile && (
+        <div className="mobile-controls">
+          <div className="list-category-select">
+            <label className="category-text" htmlFor="category">
+              게시글 카테고리{" "}
+            </label>
+            <select
+              className="board-category-dropdown1"
+              id="category"
+              value={boardCategory}
+              onChange={handleBoardCategoryChange}
+            >
+              {boardOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="button-container">
+            <button className="write-button" onClick={() => navigate("/write")}>
+              글작성
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="table-container">
         <table className="table">
           <thead>
@@ -164,8 +209,33 @@ const List = () => {
             ))}
           </tbody>
         </table>
-        <div className="bottom-container">
-          <div className="category-select">
+      </div>
+
+      <div className="list-container">
+        {currentPosts.map((item, index) => (
+          <div className="list-item" key={item.id}>
+            <div className="list-item-header">
+              <span
+                className="board_category"
+                onClick={() => handleCategoryClick(item.category)}
+              >
+                [{item.category}]
+              </span>
+              <span className="title" onClick={() => handleTitleClick(item.id)}>
+                {item.title}
+              </span>
+            </div>
+            <div className="list-item-body">
+              <span className="list-author">{item.author}</span>|
+              <span className="list-date">{item.date}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="bottom-container">
+        {!isMobile && (
+          <div className="list-category-select">
             <label className="category-text" htmlFor="category">
               게시글 카테고리{" "}
             </label>
@@ -182,44 +252,45 @@ const List = () => {
               ))}
             </select>
           </div>
-          {/* 페이지네이션 버튼 */}
-          <div className="pagination-container">
-            <div className="pagination">
+        )}
+
+        <div className="pagination-container">
+          <div className="pagination">
+            <button
+              className="back"
+              onClick={() => paginate(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              <IoIosArrowBack />
+            </button>
+            {Array.from({ length: totalPages }, (_, index) => (
               <button
-                className="back"
-                onClick={() => paginate(currentPage - 1)}
-                disabled={currentPage === 1}
+                key={index + 1}
+                onClick={() => paginate(index + 1)}
+                className={currentPage === index + 1 ? "active" : ""}
               >
-                <IoIosArrowBack />
+                {index + 1}
               </button>
-              {Array.from({ length: totalPages }, (_, index) => (
-                <button
-                  key={index + 1}
-                  onClick={() => paginate(index + 1)}
-                  className={currentPage === index + 1 ? "active" : ""}
-                >
-                  {index + 1}
-                </button>
-              ))}
-              <button
-                className="forward"
-                onClick={() => paginate(currentPage + 1)}
-                disabled={currentPage === totalPages}
-              >
-                <IoIosArrowForward />
-              </button>
-            </div>
+            ))}
+            <button
+              className="forward"
+              onClick={() => paginate(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              <IoIosArrowForward />
+            </button>
           </div>
         </div>
 
-        <div className="button-container">
-          <button className="write-button" onClick={() => navigate("/write")}>
-            글작성
-          </button>
-        </div>
+        {!isMobile && (
+          <div className="button-container">
+            <button className="write-button" onClick={() => navigate("/write")}>
+              글작성
+            </button>
+          </div>
+        )}
       </div>
 
-      {/* 토스트 메시지 */}
       <Toast message="해당 검색 결과가 없습니다." showToast={showToast} />
     </>
   );

@@ -79,3 +79,41 @@
   font-size: 16px;
   cursor: pointer;
 }
+.map {
+  height: 400px;
+}
+
+@media screen and (max-width: 400px) and (max-height: 2316px) {
+  .map-popup {
+    width: 70%;
+    height: 47%;
+    margin-top: 70px;
+  }
+  .map-popup-content {
+    height: 180px;
+  }
+  .map {
+    height: 50%;
+  }
+  #__react-kakao-maps-sdk___Map {
+    height: 150%;
+    width: 100%;
+  }
+  .post-information {
+    margin-top: -10px;
+    margin-left: -5px;
+  }
+  .postArea {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  .findLocation {
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 50%;
+  }
+  .findLocation-text {
+    font-size: 12px;
+    margin-top: -15px;
+  }
+}

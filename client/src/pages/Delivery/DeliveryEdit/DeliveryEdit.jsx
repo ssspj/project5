@@ -180,13 +180,13 @@ const DeliveryEdit = () => {
         <NavigationBar />
       </div>
       <div className="delivery-edit-content">
-        <div className="left-content">
-          <div className="categoryP-select">
-            <label className="category-text" htmlFor="category">
+        <div className="edit-left-content">
+          <div className="categoryE-select">
+            <label className="edit-category-text" htmlFor="category">
               음식 카테고리{" "}
             </label>
             <select
-              className="food-dropdown"
+              className="edit-food-dropdown"
               id="category"
               value={category}
               onChange={handleCategoryChange}
@@ -199,9 +199,9 @@ const DeliveryEdit = () => {
             </select>
           </div>
           <h2>게시물 등록 기간을 설정해주세요</h2>
-          <div className="date-select">
+          <div className="edit-date-select">
             <LocalizationProvider
-              className="date-select"
+              className="edit-date-select"
               dateAdapter={AdapterDayjs}
               locale={koLocale}
             >
@@ -219,12 +219,12 @@ const DeliveryEdit = () => {
               </DemoContainer>
             </LocalizationProvider>
           </div>
-          <div className="people-select">
+          <div className="edit-people-select">
             <label className="category-text" htmlFor="category">
               인원수{" "}
             </label>
             <select
-              className="people-dropdown"
+              className="edit-people-dropdown"
               id="people"
               value={people}
               onChange={handlePeopleChange}
@@ -237,25 +237,18 @@ const DeliveryEdit = () => {
             </select>
           </div>
           <h2>모임 장소를 선택하세요</h2>
-          <div
-            className="kakaomap"
-            id="map"
-            style={{
-              width: "600px",
-              height: "300px",
-            }}
-          ></div>
+          <div className="edit-kakaomap" id="map"></div>
           <div>
             <input
-              className="location-text"
+              className="edit-location-text"
               value={postArea}
               onChange={handleInputChange}
             />
           </div>
         </div>
         <div className="middle-divider"></div>
-        <div className="right-content">
-          <div className="delivery-title">
+        <div className="edit-right-content">
+          <div className="edit-delivery-title">
             <h2>제목</h2>
             <input
               className="delivery-input-text"
@@ -266,7 +259,7 @@ const DeliveryEdit = () => {
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
-          <div className="delivery-detail">
+          <div className="edit-delivery-detail">
             <h2>내용</h2>
             <textarea
               className="delivery-input-text"
@@ -277,7 +270,7 @@ const DeliveryEdit = () => {
             ></textarea>
           </div>
           <button
-            className="delivery-button"
+            className="edit-delivery-button"
             type="button"
             onClick={handleEditDeliveryPost}
           >

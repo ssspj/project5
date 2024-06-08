@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NavigationBar from "../../../components/NavigationBar/NavigationBar";
 import Sidebar from "../../../components/Sidebar/Sidebar";
+import PostItemboard from "../../../components/PostItemboard/PostItemboard";
 import "./MyPagePosts.css";
 import axios from "axios";
 
@@ -13,7 +14,7 @@ const MyPagePosts = () => {
   const [user_id, setUser_id] = useState(null); // 세션에서 가져온 사용자 ID
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5); // 페이지당 표시할 게시글 수
+  const [postsPerPage, setPostsPerPage] = useState(5); // 페이지당 표시할 게시글 수
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -76,6 +77,17 @@ const MyPagePosts = () => {
     console.log(user_id);
   }, [user_id]); // user_id가 변경될 때마다 호출
 
+  useEffect(() => {
+    // 모바일 화면인 경우 페이지당 게시글 수를 늘림
+    if (window.innerWidth < 904) {
+      if (myPosts.length > 0) {
+        setPostsPerPage(myPosts.length); // 사용자가 작성한 게시글 수로 설정
+      }
+    } else {
+      setPostsPerPage(5); // 모바일 이외에서는 5개씩 표시
+    }
+  }, [myPosts]); // myPosts가 변경될 때마다 useEffect가 호출되도록 배열에 추가
+
   // 페이지 변경 이벤트 핸들러
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -108,13 +120,32 @@ const MyPagePosts = () => {
       <div className="sidebar">
         <Sidebar />
       </div>
-      <div className="mypage-container">
+      <div className="mypageposts-container">
         <div className="content">
           <h2 className="text-post">내가 작성한 게시물</h2>
           {loading ? (
             <p>Loading...</p>
           ) : (
             <>
+              <div className="post-list">
+                {myPosts
+                  .slice(
+                    (currentPage - 1) * postsPerPage,
+                    currentPage * postsPerPage
+                  )
+                  .map((post) => (
+                    <PostItemboard
+                      key={post.id}
+                      title={post.title}
+                      content={post.content}
+                      created_at={post.created_at}
+                      onTitleClick={() => handleTitleClick(post.id)}
+                      showContent={true}
+                      showAuthor={false}
+                      showLikeButton={false}
+                    />
+                  ))}
+              </div>
               <table className="mypage-posts-table">
                 <thead>
                   <tr>

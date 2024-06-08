@@ -21,11 +21,7 @@ const MapPopup = ({ isOpen, lat, lon, postArea, onClose }) => {
           ×
         </button>
         <div className="map-popup-content">
-          <Map
-            center={{ lat, lng: lon }}
-            style={{ width: "100%", height: "400px" }}
-            level={3}
-          >
+          <Map className="map" center={{ lat, lng: lon }} level={3}>
             <MapMarker position={{ lat, lng: lon }} />
           </Map>
           <div className="post-information">

@@ -126,13 +126,16 @@ const View = () => {
       });
 
       setNewComment(""); // 댓글 작성 후 입력창 초기화
-      alert("댓글이 작성되었습니다.");
+      setToastMessage("댓글이 작성되었습니다.");
 
       window.location.reload();
     } catch (error) {
       console.error("댓글 작성에 실패했습니다.", error);
-      alert("댓글 작성에 실패했습니다.");
+      setToastMessage("댓글 작성에 실패했습니다.");
     }
+    setTimeout(() => {
+      setToastMessage("");
+    }, 3000);
   };
 
   const submitRecomment = async (parentId) => {
@@ -144,7 +147,7 @@ const View = () => {
         content: newRecomment[parentId], // 해당 댓글의 대댓글 내용 가져오기
       });
       setNewRecomment({ ...newRecomment, [parentId]: "" }); // 대댓글 작성 후 입력창 초기화
-      alert("대댓글이 작성되었습니다.");
+      setToastMessage("대댓글이 작성되었습니다.");
       // 대댓글이 작성된 후 해당 댓글의 대댓글 목록을 업데이트
       axios
         .get(`http://localhost:5000/api/recommentGet/${parentId}`)
@@ -159,8 +162,11 @@ const View = () => {
         });
     } catch (error) {
       console.error("Error posting recomment:", error);
-      alert("대댓글 작성에 실패했습니다.");
+      setToastMessage("대댓글 작성에 실패했습니다.");
     }
+    setTimeout(() => {
+      setToastMessage("");
+    }, 3000);
   };
 
   const onDeleteRecomment = async (recommentId) => {
@@ -178,11 +184,14 @@ const View = () => {
         }
         return updatedRecomments;
       });
-      alert("대댓글이 삭제되었습니다.");
+      setToastMessage("대댓글이 삭제되었습니다.");
     } catch (error) {
       console.error("Error deleting recomment:", error);
-      alert("대댓글 삭제에 실패했습니다.");
+      setToastMessage("대댓글 삭제에 실패했습니다.");
     }
+    setTimeout(() => {
+      setToastMessage("");
+    }, 3000);
   };
 
   const toggleRecommentBox = (commentId) => {
@@ -210,12 +219,16 @@ const View = () => {
       });
       setUpdatedCommentId(null);
       setUpdatedCommentContent("");
-      alert("댓글이 수정되었습니다.");
+      setToastMessage("댓글이 수정되었습니다.");
       updateComments();
     } catch (error) {
       console.error("Error updating comment:", error);
-      alert("댓글 수정에 실패했습니다.");
+
+      setToastMessage("댓글 수정이 실패했습니다.");
     }
+    setTimeout(() => {
+      setToastMessage("");
+    }, 3000);
   };
 
   const handleLike = async () => {

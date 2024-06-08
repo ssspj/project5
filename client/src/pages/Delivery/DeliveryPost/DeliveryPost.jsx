@@ -269,13 +269,13 @@ export default function BasicDateTimePicker() {
         <NavigationBar />
       </div>
       <div className="delivery-post-content">
-        <div className="left-content">
+        <div className="post-left-content">
           <div className="categoryP-select">
             <label className="category-text" htmlFor="category">
               음식 카테고리{" "}
             </label>
             <select
-              className="food-dropdown"
+              className="post-food-dropdown"
               id="category"
               value={category}
               onChange={handleCategoryChange}
@@ -288,9 +288,9 @@ export default function BasicDateTimePicker() {
             </select>
           </div>
           <h2>게시물 등록 기간을 설정해주세요</h2>
-          <div className="date-select">
+          <div className="post-date-select">
             <LocalizationProvider
-              className="date-select"
+              className="post-date-select"
               dateAdapter={AdapterDayjs}
               locale={koLocale}
             >
@@ -308,12 +308,12 @@ export default function BasicDateTimePicker() {
               </DemoContainer>
             </LocalizationProvider>
           </div>
-          <div className="people-select">
-            <label className="category-text" htmlFor="category">
+          <div className="post-people-select">
+            <label className="post-category-text" htmlFor="category">
               인원수{" "}
             </label>
             <select
-              className="people-dropdown"
+              className="post-people-dropdown"
               id="people"
               value={people}
               onChange={handlePeopleChange}
@@ -326,28 +326,21 @@ export default function BasicDateTimePicker() {
             </select>
           </div>
           <h2>모임 장소를 선택하세요</h2>
-          <div
-            className="kakaomap"
-            id="map"
-            style={{
-              width: "600px",
-              height: "300px",
-            }}
-          ></div>
+          <div className="post-kakaomap" id="map"></div>
           <div>
             <input
-              className="location-text"
+              className="post-location-text"
               value={postArea} // 주소 상태 값을 입력란에 표시
               onChange={handleInputChange}
             />
           </div>
         </div>
         <div className="middle-divider"></div> {/* 가운데 구분선 */}
-        <div className="right-content">
-          <div className="delivery-title">
+        <div className="post-right-content">
+          <div className="post-delivery-title">
             <h2>제목</h2>
             <input
-              className="delivery-input-text"
+              className="post-delivery-input-text"
               type="text"
               id="title"
               value={title}
@@ -355,10 +348,10 @@ export default function BasicDateTimePicker() {
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
-          <div className="delivery-detail">
+          <div className="post-delivery-detail">
             <h2>내용</h2>
             <textarea
-              className="delivery-input-text"
+              className="post-delivery-input-text"
               id="content"
               value={content}
               name="content"
@@ -366,7 +359,7 @@ export default function BasicDateTimePicker() {
             ></textarea>
           </div>
           <button
-            className="delivery-button"
+            className="post-delivery-button"
             type="button"
             onClick={newDeliveryPost}
           >
