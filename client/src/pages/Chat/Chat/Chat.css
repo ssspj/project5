@@ -286,6 +286,7 @@ body {
 
   .right-container {
     display: none;
+
   }
 
   .vertical-line {
@@ -347,7 +348,7 @@ body {
   .chat-search-container {
     margin-top: 200px;
     right: 0;
-    margin-right: 10px;
+    margin-right: 1px;
   }
 
   .chat-search-container input[type="text"] {
@@ -355,7 +356,7 @@ body {
     padding: 4px;
     height: 20px;
     margin-top: 5px;
-    width: 90%;
+    width: 88%;
   }
 
   .searchButton {
